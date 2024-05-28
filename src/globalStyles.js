@@ -105,19 +105,19 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 export const Container = styled.div`
-padding-top: 24px;
-padding-left: 20px;
-padding-right: 20px;
-max-width: 335px;
+  padding-top: 24px;
+  padding-left: 20px;
+  padding-right: 20px;
+  max-width: 335px;
 
-@media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     padding-left: 32px;
     max-width: 614px;
-}
+  }
 
-@media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1440px) {
     padding-top: 28px;
     padding-left: 100px;
     max-width: 1087px;
-}
+  }
 `;
