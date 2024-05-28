@@ -1,5 +1,22 @@
 import styled from "styled-components";
 
+export const Logo = styled.img`
+  position: absolute;
+  width: 172px;
+  height: 44px;
+  left: 20px;
+  top: 24px;
+
+  @media screen and (min-width: 768px) {
+    left: 32px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    left: 100px;
+    top: 28px;
+  }
+`;
+
 export const Title = styled.h1`
   color: var(--main-text-color);
   font-size: 28px;

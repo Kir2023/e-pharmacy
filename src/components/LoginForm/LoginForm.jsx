@@ -1,15 +1,19 @@
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { LoginBtn } from './LoginForm.styled';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { Form, Input, LoginBtn } from "./LoginForm.styled";
 
 const schema = yup.object().shape({
-  email: yup.string().email('Invalid email').required('Email is required'),
-  password: yup.string().required('Password is required'),
+  email: yup.string().email("Invalid email").required("Email is required"),
+  password: yup.string().required("Password is required"),
 });
 
 const LoginForm = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -19,25 +23,27 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <div>
-        <input
+        <Input
           type="email"
           id="email"
-          {...register('email')}
+          placeholder="Email address"
+          {...register("email")}
         />
         {errors.email && <span>{errors.email.message}</span>}
       </div>
       <div>
-        <input
+        <Input
           type="password"
           id="password"
-          {...register('password')}
+          placeholder="Password"
+          {...register("password")}
         />
         {errors.password && <span>{errors.password.message}</span>}
       </div>
       <LoginBtn type="submit">Log in</LoginBtn>
-    </form>
+    </Form>
   );
 };
 
