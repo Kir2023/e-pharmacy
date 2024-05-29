@@ -1,8 +1,8 @@
-import Header from "../../components/Header/Header";
+import SharedLayout from "../../components/SharedLayout/SharedLayout";
 
 const DasboardPage = () => {
   return (
-      <Header/>
+    <SharedLayout/>
   );
 };
 

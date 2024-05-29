@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     --background-color: #FFFFFF;
     --button-background-color: #DCDDDF;
     --transition: 250ms ease-in-out;
+    color-scheme: light dark;
     }
 
     body{
