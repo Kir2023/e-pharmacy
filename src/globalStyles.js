@@ -51,12 +51,7 @@ export const GlobalStyle = createGlobalStyle`
       a{
         text-decoration: none;
       }
-      
-      svg{
-        width: 16px;
-        height: 16px;
-      }
-      
+            
       ::-webkit-scrollbar {
           width: 15px;
         }
