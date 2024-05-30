@@ -1,7 +1,13 @@
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
-import { Form, Input, LoginBtn } from "./LoginForm.styled";
+import {
+  StyledForm,
+  Input,
+  LoginBtn,
+  PasswordToggleBtn,
+  InputWrapper,
+} from "./LoginForm.styled";
+import { useState } from "react";
 
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -9,41 +15,54 @@ const schema = yup.object().shape({
 });
 
 const LoginForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(schema),
-  });
+  const [showPassword, setShowPassword] = useState(false);
 
-  const onSubmit = (data) => {
-    console.log(data);
-    // Додати логіку відправки на сервер
+  const handleTogglePassword = () => {
+    setShowPassword((prevState) => !prevState);
   };
 
+  const getPasswordIcon = () =>
+    showPassword ? "./sprite.svg#icon-eye-on" : "./sprite.svg#icon-eye-off";
+
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <Input
-          type="email"
-          id="email"
-          placeholder="Email address"
-          {...register("email")}
-        />
-        {errors.email && <span>{errors.email.message}</span>}
-      </div>
-      <div>
-        <Input
-          type="password"
-          id="password"
-          placeholder="Password"
-          {...register("password")}
-        />
-        {errors.password && <span>{errors.password.message}</span>}
-      </div>
-      <LoginBtn type="submit">Log in</LoginBtn>
-    </Form>
+    <Formik
+      initialValues={{ email: "", password: "" }}
+      validationSchema={schema}
+      // onSubmit={onSubmit}
+    >
+      {({ isSubmitting }) => (
+        <StyledForm>
+          <div>
+            <Input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Email address"
+            />
+            <ErrorMessage name="email" component="span" />
+          </div>
+          <div>
+            <InputWrapper>
+              <Input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                name="password"
+                placeholder="Password"
+              />
+              <PasswordToggleBtn type="button" onClick={handleTogglePassword}>
+                <svg>
+                  <use xlinkHref={getPasswordIcon()} />
+                </svg>
+              </PasswordToggleBtn>
+            </InputWrapper>
+            <ErrorMessage name="password" component="span" />
+          </div>
+          <LoginBtn type="submit" disabled={isSubmitting}>
+            Log in
+          </LoginBtn>
+        </StyledForm>
+      )}
+    </Formik>
   );
 };
 
