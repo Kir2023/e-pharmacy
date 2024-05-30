@@ -1,8 +1,7 @@
-import SharedLayout from "../../components/SharedLayout/SharedLayout";
 
 const DasboardPage = () => {
   return (
-    <SharedLayout/>
+    <h1>Dashboard</h1>
   );
 };
 

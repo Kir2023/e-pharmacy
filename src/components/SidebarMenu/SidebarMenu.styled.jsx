@@ -18,13 +18,18 @@ export const SidebarContainer = styled.nav`
   transition: transform 0.3s ease;
   z-index: 2;
 
+  &.no-scroll {
+    overflow: hidden;
+  }
+
   &.open {
     transform: translateX(0);
+    min-height: 100vh;
   }
 
   @media screen and (min-width: 1440px) {
     transform: translateX(0);
-    position: static;
+    margin-top: 80px;
   }
 `;
 
@@ -37,6 +42,7 @@ export const MenuList = styled.ul`
 
   @media screen and (min-width: 1440px) {
     margin-top: 40px;
+  }
 `;
 
 export const MenuItem = styled.li`
