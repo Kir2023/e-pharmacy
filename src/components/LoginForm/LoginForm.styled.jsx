@@ -1,19 +1,21 @@
 import styled from "styled-components";
 
-export const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding-top: 380px;
+export const StyledForm = styled.div`
+  .styled-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-top: 380px;
 
-  @media screen and (min-width: 768px) {
-    padding-top: 540px;
-  }
+    @media screen and (min-width: 768px) {
+      padding-top: 540px;
+    }
 
-  @media screen and (min-width: 1440px) {
-    position: absolute;
-    left: 1000px;
-    padding-top: 270px;
+    @media screen and (min-width: 1440px) {
+      position: absolute;
+      left: 1000px;
+      padding-top: 270px;
+    }
   }
 `;
 

@@ -1,4 +1,4 @@
-import { Formik, ErrorMessage } from "formik";
+import { Formik, Field, ErrorMessage, Form } from "formik";
 import * as yup from "yup";
 import {
   StyledForm,
@@ -8,6 +8,8 @@ import {
   InputWrapper,
 } from "./LoginForm.styled";
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -16,6 +18,7 @@ const schema = yup.object().shape({
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleTogglePassword = () => {
     setShowPassword((prevState) => !prevState);
@@ -24,30 +27,53 @@ const LoginForm = () => {
   const getPasswordIcon = () =>
     showPassword ? "./sprite.svg#icon-eye-on" : "./sprite.svg#icon-eye-off";
 
+  const handleLogin = async (values, { setSubmitting, setFieldError }) => {
+    try {
+      console.log("Submitting values: ", values);
+      const response = await axios.post(
+        "https://e-pharmacy-backend-ez9m.onrender.com/api/user/login",
+        values
+      );
+      console.log("Response: ", response);
+      const token = response.data.token;
+      localStorage.setItem("token", token);
+      navigate("/dashboard");
+      console.log("Login successful, token:", token);
+    } catch (error) {
+      console.error("Login error:", error);
+      setFieldError("email", "Invalid email or password");
+    }
+
+    setSubmitting(false);
+  };
+
   return (
     <Formik
       initialValues={{ email: "", password: "" }}
       validationSchema={schema}
-      // onSubmit={onSubmit}
+      onSubmit={handleLogin}
     >
       {({ isSubmitting }) => (
         <StyledForm>
-          <div>
-            <Input
+          <Form className="styled-form">
+            <Field
+              as={Input}
               type="email"
               id="email"
               name="email"
               placeholder="Email address"
+              autoComplete="off"
             />
             <ErrorMessage name="email" component="span" />
-          </div>
-          <div>
+
             <InputWrapper>
-              <Input
+              <Field
+                as={Input}
                 type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
                 placeholder="Password"
+                autoComplete="off"
               />
               <PasswordToggleBtn type="button" onClick={handleTogglePassword}>
                 <svg>
@@ -56,10 +82,11 @@ const LoginForm = () => {
               </PasswordToggleBtn>
             </InputWrapper>
             <ErrorMessage name="password" component="span" />
-          </div>
-          <LoginBtn type="submit" disabled={isSubmitting}>
-            Log in
-          </LoginBtn>
+
+            <LoginBtn type="submit" disabled={isSubmitting}>
+              Log in
+            </LoginBtn>
+          </Form>
         </StyledForm>
       )}
     </Formik>
