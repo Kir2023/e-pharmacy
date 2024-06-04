@@ -6,10 +6,9 @@ import PageTitle from "../../components/Title/Title";
 import { Wrapper } from "./Header.styled";
 
 const Header = () => {
-
   const handleLogout = async () => {
     try {
-      await axios.get('https://e-pharmacy-backend-ez9m.onrender.com/api/user/logout');
+      await axios.get('http://https://e-pharmacy-backend-ez9m.onrender.com/api/user/logout');
       localStorage.removeItem('token');
       console.log('Logout successful');
     } catch (error) {
@@ -22,7 +21,7 @@ const Header = () => {
       <Logo />
       <PageTitle title="Medicine Store" />
       <SubTitle text="Dashboard" />
-      <LogoutBtn onClick={handleLogout} />
+      <LogoutBtn onLogout={handleLogout} />
     </Wrapper>
   );
 };
