@@ -31,7 +31,7 @@ const LoginForm = () => {
     try {
       console.log("Submitting values: ", values);
       const response = await axios.post(
-        "https://https://e-pharmacy-backend-ez9m.onrender.com/api/user/login",
+        "https://e-pharmacy-backend-ez9m.onrender.com/api/user/login",
         values
       );
       console.log("Response: ", response);
