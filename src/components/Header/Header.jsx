@@ -8,7 +8,7 @@ import { Wrapper } from "./Header.styled";
 const Header = () => {
   const handleLogout = async () => {
     try {
-      await axios.get('http://https://e-pharmacy-backend-ez9m.onrender.com/api/user/logout');
+      await axios.get('https://e-pharmacy-backend-ez9m.onrender.com/api/user/logout');
       localStorage.removeItem('token');
       console.log('Logout successful');
     } catch (error) {
