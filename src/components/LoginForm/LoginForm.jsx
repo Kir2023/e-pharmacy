@@ -9,6 +9,8 @@ import {
 } from "./LoginForm.styled";
 import { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../../redux/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
@@ -19,6 +21,7 @@ const schema = yup.object().shape({
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleTogglePassword = () => {
     setShowPassword((prevState) => !prevState);
@@ -36,7 +39,7 @@ const LoginForm = () => {
       );
       console.log("Response: ", response);
       const token = response.data.token;
-      localStorage.setItem("token", token);
+      dispatch(loginSuccess(token));
       navigate("/dashboard");
       console.log("Login successful, token:", token);
     } catch (error) {
