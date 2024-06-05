@@ -1,8 +1,12 @@
+import Statistic from "../../components/Statistic/Statistic";
+import { Container } from "../../globalStyles";
 
-const DasboardPage = () => {
+const DashboardPage = () => {
   return (
-    <h1>Dashboard</h1>
+    <Container>
+      <Statistic />
+    </Container>
   );
 };
 
-export default DasboardPage;
+export default DashboardPage;

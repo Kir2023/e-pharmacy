@@ -5,4 +5,14 @@ export const Wrapper = styled.header`
   background-color: #f7f8fa;
   height: 80px;
   min-width: 100vw;
+
+  .logout-btn {
+    display: none;
+  }
+
+  @media screen and (min-width: 1440px) {
+    .logout-btn {
+      display: flex;
+    }
+  }
 `;

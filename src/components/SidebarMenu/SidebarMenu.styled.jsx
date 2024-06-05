@@ -27,9 +27,17 @@ export const SidebarContainer = styled.nav`
     min-height: 100vh;
   }
 
+  .logout-btn {
+    display: block;
+  }
+
   @media screen and (min-width: 1440px) {
     transform: translateX(0);
     margin-top: 80px;
+
+    .logout-btn {
+      display: none;
+    }
   }
 `;
 

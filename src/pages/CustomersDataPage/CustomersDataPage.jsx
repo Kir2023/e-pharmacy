@@ -1,11 +1,3 @@
-// const CustomersDataPage = () => {
-//   return (
-//     <div>CustomersDataPage</div>
-//   )
-// }
-
-// export default CustomersDataPage
-
 import { useState, useEffect } from "react";
 import axios from "axios";
 

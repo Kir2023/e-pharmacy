@@ -6,8 +6,8 @@ const Loader = () => {
     <Wrapper>
       <Hourglass
         visible={true}
-        height="180"
-        width="180"
+        height="100"
+        width="100"
         ariaLabel="hourglass-loading"
         colors={["var(--main-color)", "var(--active-color)"]}
       />

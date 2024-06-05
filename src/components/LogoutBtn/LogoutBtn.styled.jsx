@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const Button = styled.button`
   position: absolute;
-  right: 40px;
-  top: 18px;
+  right: 12px;
+  bottom: 20px;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -11,6 +11,11 @@ export const Button = styled.button`
   &:hover .icon-logout,
   &:focus .icon-logout {
     fill: var(--active-color);
+  }
+
+  @media screen and (min-width: 1440px) {
+    right: 40px;
+    top: 18px;
   }
 `;
 
