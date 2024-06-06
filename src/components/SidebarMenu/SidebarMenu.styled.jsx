@@ -83,7 +83,7 @@ export const Icon = styled.svg`
 `;
 
 export const ToggleButton = styled.button`
-  position: fixed;
+  position: absolute;
   top: 24px;
   left: 20px;
   background: none;

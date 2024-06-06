@@ -13,10 +13,12 @@ export const GlobalStyle = createGlobalStyle`
     --main-color: #59B17A;
     --main-text-color: #1D1E21;
     --active-color: #3F945F;
+    --confirmed-color: #8059E4;
+    --pending-color: #F79042;
     --cancel-color: #E85050;
+    --processing-color: #70A6E8;
     --background-color: #FFFFFF;
     --button-background-color: #DCDDDF;
-    --transition: 250ms ease-in-out;
     color-scheme: light dark;
     }
 

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { TableContainer, Table, TableHead, TableBody, TableRow, TableHeader, TableCell } from './RecentCustomers.styled';
+import { TableContainer, Table, TableHead, TableBody, TableRow, TableHeader, TableCell, Caption } from './RecentCustomers.styled';
 
 const RecentCustomers = () => {
   const [customers, setCustomers] = useState([]);
@@ -21,7 +21,7 @@ const RecentCustomers = () => {
   return (
     <TableContainer>
       <Table>
-      <caption>Recent Customers</caption>
+      <Caption>Recent Customers</Caption>
         <TableHead>
           <TableRow>
             <TableHeader>Name</TableHeader>
