@@ -1,8 +1,21 @@
+import { useState } from "react";
+import AllOrders from "../../components/AllOrders/AllOrders";
+import UserNameFilter from "../../components/UserNameFilter/UserNameFilter";
+import { Container } from "../../globalStyles";
 
 const AllOrdersPage = () => {
-  return (
-    <div>AllOrdersPage</div>
-  )
-}
+  const [filter, setFilter] = useState("");
 
-export default AllOrdersPage
+  const handleFilter = (userName) => {
+    setFilter(userName);
+  };
+
+  return (
+    <Container>
+      <UserNameFilter handleFilter={handleFilter} />
+      <AllOrders filter={filter} />
+    </Container>
+  );
+};
+
+export default AllOrdersPage;

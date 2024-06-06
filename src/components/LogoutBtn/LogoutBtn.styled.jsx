@@ -7,6 +7,7 @@ export const Button = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+  height: 44px;
 
   &:hover .icon-logout,
   &:focus .icon-logout {
