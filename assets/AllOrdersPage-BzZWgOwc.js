@@ -1,0 +1,1 @@
+import{j as r}from"./index-Cf_5qXBg.js";const s=()=>r.jsx("div",{children:"AllOrdersPage"});export{s as default};

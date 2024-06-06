@@ -266,7 +266,7 @@ Error generating stack: `+i.message+`
     height: 44px;
   }
 `,xd=Q.button`
-  position: fixed;
+  position: absolute;
   top: 24px;
   left: 20px;
   background: none;
@@ -395,16 +395,18 @@ to {
   justify-content: center;
   align-items: center;
   height: 100vh;
-`,_x=()=>_.jsx(Cx,{children:_.jsx(kx,{visible:!0,height:"100",width:"100",ariaLabel:"hourglass-loading",colors:["var(--main-color)","var(--active-color)"]})}),Px=({children:e})=>av(n=>n.auth.isAuthenticated)?e:_.jsx(l1,{to:"/login"}),Rx=R.lazy(()=>kr(()=>import("./LoginPage-DmDUkl4h.js"),[])),Ox=R.lazy(()=>kr(()=>import("./DashboardPage-DQcUmYQj.js"),[])),Tx=R.lazy(()=>kr(()=>import("./AllOrdersPage-B3pMctZQ.js"),[])),Nx=R.lazy(()=>kr(()=>import("./AllProductsPage-VYEmCeU_.js"),[])),Ax=R.lazy(()=>kr(()=>import("./AllSuppliersPage-B85O-z3e.js"),[])),Lx=R.lazy(()=>kr(()=>import("./CustomersDataPage-BL9h8TST.js"),[]));function jx(){return _.jsx("div",{className:"App",children:_.jsx(R.Suspense,{fallback:_.jsx(_x,{}),children:_.jsxs(a1,{children:[_.jsx(zt,{path:"/login",element:_.jsx(Rx,{})}),_.jsxs(zt,{path:"/",element:_.jsx(Px,{children:_.jsx(gx,{})}),children:[_.jsx(zt,{path:"dashboard",element:_.jsx(Ox,{})}),_.jsx(zt,{path:"orders",element:_.jsx(Tx,{})}),_.jsx(zt,{path:"products",element:_.jsx(Nx,{})}),_.jsx(zt,{path:"suppliers",element:_.jsx(Ax,{})}),_.jsx(zt,{path:"customers",element:_.jsx(Lx,{})})]})]})})})}const Ix="/e-pharmacy-frontend/assets/Inter-Black-DavoHWvD.woff",zx="/e-pharmacy-frontend/assets/Inter-Bold-CDoCvKNh.woff",Dx="/e-pharmacy-frontend/assets/Inter-Medium-BfaJXugp.woff",$x="/e-pharmacy-frontend/assets/Inter-Regular-DJhw5qEu.woff",Fx=XS`
+`,_x=()=>_.jsx(Cx,{children:_.jsx(kx,{visible:!0,height:"100",width:"100",ariaLabel:"hourglass-loading",colors:["var(--main-color)","var(--active-color)"]})}),Px=({children:e})=>av(n=>n.auth.isAuthenticated)?e:_.jsx(l1,{to:"/login"}),Rx=R.lazy(()=>kr(()=>import("./LoginPage-BEYzrzje.js"),[])),Ox=R.lazy(()=>kr(()=>import("./DashboardPage-CaecZ02x.js"),[])),Tx=R.lazy(()=>kr(()=>import("./AllOrdersPage-BzZWgOwc.js"),[])),Nx=R.lazy(()=>kr(()=>import("./AllProductsPage-B3HFtXyJ.js"),[])),Ax=R.lazy(()=>kr(()=>import("./AllSuppliersPage-b45TvhM5.js"),[])),Lx=R.lazy(()=>kr(()=>import("./CustomersDataPage-CjUoW_z-.js"),[]));function jx(){return _.jsx("div",{className:"App",children:_.jsx(R.Suspense,{fallback:_.jsx(_x,{}),children:_.jsxs(a1,{children:[_.jsx(zt,{path:"/login",element:_.jsx(Rx,{})}),_.jsxs(zt,{path:"/",element:_.jsx(Px,{children:_.jsx(gx,{})}),children:[_.jsx(zt,{path:"dashboard",element:_.jsx(Ox,{})}),_.jsx(zt,{path:"orders",element:_.jsx(Tx,{})}),_.jsx(zt,{path:"products",element:_.jsx(Nx,{})}),_.jsx(zt,{path:"suppliers",element:_.jsx(Ax,{})}),_.jsx(zt,{path:"customers",element:_.jsx(Lx,{})})]})]})})})}const Ix="/e-pharmacy-frontend/assets/Inter-Black-DavoHWvD.woff",zx="/e-pharmacy-frontend/assets/Inter-Bold-CDoCvKNh.woff",Dx="/e-pharmacy-frontend/assets/Inter-Medium-BfaJXugp.woff",$x="/e-pharmacy-frontend/assets/Inter-Regular-DJhw5qEu.woff",Fx=XS`
 
 :root{
     --main-color: #59B17A;
     --main-text-color: #1D1E21;
     --active-color: #3F945F;
+    --confirmed-color: #8059E4;
+    --pending-color: #F79042;
     --cancel-color: #E85050;
+    --processing-color: #70A6E8;
     --background-color: #FFFFFF;
     --button-background-color: #DCDDDF;
-    --transition: 250ms ease-in-out;
     color-scheme: light dark;
     }
 
