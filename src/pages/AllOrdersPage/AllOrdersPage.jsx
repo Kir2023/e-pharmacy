@@ -1,6 +1,6 @@
 import { useState } from "react";
 import AllOrders from "../../components/AllOrders/AllOrders";
-import UserNameFilter from "../../components/UserNameFilter/UserNameFilter";
+import Filter from "../../components/Filter/Filter";
 import { Container } from "../../globalStyles";
 
 const AllOrdersPage = () => {
@@ -12,7 +12,7 @@ const AllOrdersPage = () => {
 
   return (
     <Container>
-      <UserNameFilter handleFilter={handleFilter} />
+      <Filter handleFilter={handleFilter} placeholder="User Name" />
       <AllOrders filter={filter} />
     </Container>
   );

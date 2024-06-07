@@ -24,7 +24,6 @@ export const Input = styled.input`
   &::placeholder {
     color: rgba(29, 30, 33, 0.4);
     font-size: 12px;
-    padding: 13px 18px;
   }
 
   @media screen and (min-width: 768px) {

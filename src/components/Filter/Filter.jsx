@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import { FilterContainer, Input, Button } from "./UserNameFilter.styled";
+import { FilterContainer, Input, Button } from "./Filter.styled";
 
-const UserNameFilter = ({ handleFilter }) => {
+const UserNameFilter = ({ handleFilter, placeholder }) => {
   const [userName, setUserName] = useState("");
 
   const handleInputChange = (e) => {
@@ -22,7 +22,7 @@ const UserNameFilter = ({ handleFilter }) => {
         value={userName}
         onChange={handleInputChange}
         onKeyDown={handleKeyPress}
-        placeholder="User Name"
+        placeholder={placeholder}
       />
       <Button onClick={() => handleFilter(userName)}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
