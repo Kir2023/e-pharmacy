@@ -1,76 +1,151 @@
 import styled from "styled-components";
 
 export const TableContainer = styled.div`
-  margin: 20px;
-  overflow-x: auto;
-`;
+  max-width: 335px;
+  margin-top: 20px;
 
-export const Table = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-`;
+  @media screen and (min-width: 768px) {
+    max-width: 614px;
+  }
 
-export const TableHead = styled.thead`
-  background-color: #f5f5f5;
-`;
-
-export const TableBody = styled.tbody`
-  background-color: #fff;
-`;
-
-export const TableRow = styled.tr`
-  &:nth-child(even) {
-    background-color: #f9f9f9;
+  @media screen and (min-width: 1440px) {
+    max-width: 1280px;
   }
 `;
 
-export const TableHeader = styled.th`
-  padding: 10px;
-  border: 1px solid #ddd;
-  text-align: left;
-`;
+export const Table = styled.table`
+  background-color: #ffffff;
+  width: 671px;
+  border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 
-export const TableCell = styled.td`
-  padding: 10px;
-  border: 1px solid #ddd;
+  @media screen and (min-width: 768px) {
+    width: 960px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 1280px;
+  }
 `;
 
 export const Caption = styled.caption`
-  caption-side: top;
-  font-size: 24px;
-  margin: 10px 0;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+  padding: 14px;
+  background-color: #e7f1ed;
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+  }
 `;
 
-export const Avatar = styled.img`
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-  border-radius: 50%;
+export const TableHead = styled.thead`
+  color: rgba(29, 30, 33, 0.4);
+  font-weight: 500;
+`;
+
+export const TableBody = styled.tbody``;
+
+export const TableRow = styled.tr``;
+
+export const TableHeader = styled.th`
+  padding: 12px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+
+  &:last-child {
+    border-right: none;
+  }
+`;
+
+export const TableCell = styled.td`
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  font-size: 12px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
+
+  span {
+    display: inline-block;
+    padding: 4px 13.5px;
+    border-radius: 40px;
+    background-color: ${({ type }) => {
+      switch (type) {
+        case "Cancelled":
+          return "rgba(232, 80, 80, 0.1)";
+        case "Shipped":
+          return "rgba(29, 30, 33, 0.1)";
+        case "Completed":
+          return "rgba(89, 177, 122, 0.1)";
+        case "Processing":
+          return "rgba(112, 166, 232, 0.1)";
+        case "Pending":
+          return "rgba(247, 144, 66, 0.1)";
+        case "Confirmed":
+          return "rgba(128, 89, 228, 0.1)";
+        case "Delivered":
+          return "rgba(0, 255, 0, 0.1)";
+        default:
+          return "rgba(0, 0, 0, 0.05)";
+      }
+    }};
+
+  color: ${({ type }) => {
+    switch (type) {
+      case "Completed":
+        return "var(--main-color)";
+      case "Confirmed":
+        return "var(--confirmed-color)";
+      case "Pending":
+        return "var(--pending-color)";
+      case "Cancelled":
+        return "var(--cancel-color)";
+      case "Processing":
+        return "var(--processing-color)";
+      case "Shipped":
+        return "var(--main-text-color)";
+      case "Delivered":
+        return "#00ff00";
+      default:
+        return "inherit";
+    }
+  }};
+
+  &:last-child {
+    border-right: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const UserWrapper = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+
+  @media screen and (min-width: 768px) {
+    align-items: center;
+    flex-direction: row;
+  }
 `;
 
-export const Pagination = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-`;
+export const Avatar = styled.img`
+  width: 24px;
+  height: 24px;
 
-export const PageDot = styled.button`
-  width: 9.5px;
-  height: 9.5px;
-  background-color: ${(props) =>
-    props.active ? "var(--main-color)" : "#E7F1ED"};
-  border: none;
-  border-radius: 50%;
-  margin: 0 5px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${(props) =>
-      props.active ? "var(--main-color)" : "var(--active-color)"};
+  @media screen and (min-width: 768px) {
+    width: 36px;
+    height: 36px;
   }
 `;

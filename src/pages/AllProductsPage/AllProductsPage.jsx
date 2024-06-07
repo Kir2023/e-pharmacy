@@ -1,8 +1,7 @@
+import { Container } from "../../globalStyles";
 
 const AllProductsPage = () => {
-  return (
-    <div>AllProductsPage</div>
-  )
-}
+  return <Container>AllProductsPage</Container>;
+};
 
-export default AllProductsPage
+export default AllProductsPage;

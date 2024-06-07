@@ -12,9 +12,8 @@ import {
   Caption,
   Avatar,
   UserWrapper,
-  Pagination,
-  PageDot,
 } from "./AllOrders.styled";
+import Pagination from "../Pagination/Pagination";
 
 const AllOrders = ({ filter }) => {
   const [orders, setOrders] = useState([]);
@@ -91,17 +90,12 @@ const AllOrders = ({ filter }) => {
           ))}
         </TableBody>
       </Table>
-      <Pagination>
-        {[
-          ...Array(Math.ceil(filteredOrders.length / ordersPerPage)).keys(),
-        ].map((number) => (
-          <PageDot
-            key={number + 1}
-            active={currentPage === number + 1}
-            onClick={() => paginate(number + 1)}
-          />
-        ))}
-      </Pagination>
+      <Pagination
+        totalItems={filteredOrders.length}
+        itemsPerPage={ordersPerPage}
+        currentPage={currentPage}
+        paginate={paginate}
+      />
     </TableContainer>
   );
 };
