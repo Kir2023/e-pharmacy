@@ -12,10 +12,14 @@ import {
   Caption,
   Avatar,
   UserWrapper,
+  Pagination,
+  PageDot,
 } from "./AllOrders.styled";
 
 const AllOrders = ({ filter }) => {
   const [orders, setOrders] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const ordersPerPage = 5;
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -44,6 +48,15 @@ const AllOrders = ({ filter }) => {
       )
     : orders;
 
+  const indexOfLastOrder = currentPage * ordersPerPage;
+  const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
+  const currentOrders = filteredOrders.slice(
+    indexOfFirstOrder,
+    indexOfLastOrder
+  );
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <TableContainer>
       <Table>
@@ -59,7 +72,7 @@ const AllOrders = ({ filter }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {filteredOrders.map((order) => (
+          {currentOrders.map((order) => (
             <TableRow key={order._id}>
               <TableCell>
                 <UserWrapper>
@@ -78,6 +91,17 @@ const AllOrders = ({ filter }) => {
           ))}
         </TableBody>
       </Table>
+      <Pagination>
+        {[
+          ...Array(Math.ceil(filteredOrders.length / ordersPerPage)).keys(),
+        ].map((number) => (
+          <PageDot
+            key={number + 1}
+            active={currentPage === number + 1}
+            onClick={() => paginate(number + 1)}
+          />
+        ))}
+      </Pagination>
     </TableContainer>
   );
 };
