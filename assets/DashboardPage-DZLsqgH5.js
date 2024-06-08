@@ -1,4 +1,4 @@
-import{p as t,r as i,j as e,b as f,L as j,s as o,C as v}from"./index-CvTBbUrB.js";const y=t.div`
+import{p as t,r as i,j as e,b as f,L as j,s as o,C as v}from"./index-33BLTpYy.js";const y=t.div`
   max-width: 335px;
   margin-top: 20px;
 
@@ -81,7 +81,7 @@ import{p as t,r as i,j as e,b as f,L as j,s as o,C as v}from"./index-CvTBbUrB.js
     max-width: 614px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1440px) {
     max-width: 630px;
   }
 `,R=t.table`
