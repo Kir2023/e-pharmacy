@@ -24,7 +24,7 @@ const categories = [
   "Baby Care",
 ];
 
-const AddProductModal = ({ isOpen, onClose }) => {
+const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
   const [productInfo, setProductInfo] = useState("");
   const [category, setCategory] = useState(categories[0]);
   const [stock, setStock] = useState("");
@@ -48,6 +48,7 @@ const AddProductModal = ({ isOpen, onClose }) => {
       );
       const addedProduct = response.data;
       console.log("Added product:", addedProduct);
+      onAddProduct(addedProduct); // Вызываем обратный вызов с новым продуктом
       onClose();
     } catch (error) {
       console.error("Error adding product:", error);

@@ -8,7 +8,7 @@ export const TableContainer = styled.div`
     max-width: 614px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1440px) {
     max-width: 630px;
   }
 `;

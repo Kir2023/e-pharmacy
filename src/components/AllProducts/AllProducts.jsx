@@ -15,12 +15,15 @@ import {
   Button,
   AddProductButton,
 } from "./AllProducts.styled";
+import Pagination from "../Pagination/Pagination";
 
 const AllProducts = ({ filter }) => {
   const [products, setProducts] = useState([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editedProduct, setEditedProduct] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 5;
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -70,10 +73,20 @@ const AllProducts = ({ filter }) => {
       )
     : products;
 
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
     <TableContainer>
       <AddProductButton onClick={() => setIsAddModalOpen(true)}>
-        + Add a new product
+        <div className="circle">+</div>
+        Add a new product
       </AddProductButton>
       <Table>
         <Caption>All Products</Caption>
@@ -88,8 +101,8 @@ const AllProducts = ({ filter }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {Array.isArray(filteredProducts) && filteredProducts.length > 0 ? (
-            filteredProducts.map((product) => (
+          {Array.isArray(currentProducts) && currentProducts.length > 0 ? (
+            currentProducts.map((product) => (
               <TableRow key={product._id}>
                 <TableCell>{product.name}</TableCell>
                 <TableCell>{product.category}</TableCell>
@@ -148,6 +161,12 @@ const AllProducts = ({ filter }) => {
           }}
         />
       )}
+      <Pagination
+        totalItems={filteredProducts.length}
+        itemsPerPage={productsPerPage}
+        currentPage={currentPage}
+        paginate={paginate}
+      />
     </TableContainer>
   );
 };

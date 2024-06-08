@@ -1,42 +1,85 @@
 import styled from "styled-components";
 
 export const TableContainer = styled.div`
-  padding: 20px;
+  max-width: 335px;
+  margin-top: 20px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 614px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    min-width: 1320px;
+  }
 `;
 
 export const Table = styled.table`
-  width: 100%;
+  background-color: #ffffff;
+  width: 671px;
   border-collapse: collapse;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
+  @media screen and (min-width: 768px) {
+    width: 960px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    width: 1280px;
+  }
+`;
+
+export const Caption = styled.caption`
+  font-size: 16px;
+  font-weight: bold;
+  text-align: left;
+  padding: 14px;
+  background-color: #e7f1ed;
+
+  @media screen and (min-width: 768px) {
+    font-size: 18px;
+  }
 `;
 
 export const TableHead = styled.thead`
-  background-color: #f1f1f1;
+  color: rgba(29, 30, 33, 0.4);
+  font-weight: 500;
+  font-size: 12px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
 `;
 
 export const TableBody = styled.tbody``;
 
-export const TableRow = styled.tr`
-  &:nth-child(even) {
-    background-color: #f9f9f9;
+export const TableRow = styled.tr``;
+
+export const TableHeader = styled.th`
+  padding: 12px;
+  text-align: left;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+
+  &:last-child {
+    border-right: none;
   }
 `;
 
-export const TableHeader = styled.th`
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-`;
-
 export const TableCell = styled.td`
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-`;
-
-export const Caption = styled.caption`
-  caption-side: top;
+  padding: 12px;
   text-align: left;
-  font-weight: bold;
-  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  font-size: 12px;
+
+  &:last-child {
+    border-right: none;
+  }
+
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
 `;
 
 export const Button = styled.button`
@@ -53,12 +96,31 @@ export const Button = styled.button`
   }
 `;
 
-export const AddProductButton = styled(Button)`
-  background-color: #008cba;
-  margin-bottom: 10px;
+export const AddProductButton = styled.button`
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #000;
 
-  &:hover {
-    background-color: #007bb5;
+  .circle {
+    background-color: var(--main-color);
+    color: white;
+    border-radius: 60px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    position: absolute;
+    left: 1223px;
+    top: 117px;
   }
 `;
 
