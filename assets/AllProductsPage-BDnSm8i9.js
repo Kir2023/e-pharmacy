@@ -1,4 +1,4 @@
-import{p as r,r as i,j as e,b as S,C as T}from"./index-BT54QvEX.js";import{P as F,U as _}from"./Filter-DBDDvijB.js";const D=r.div`
+import{p as r,r as i,j as e,b as S,C as T}from"./index-BKMtUqpZ.js";import{P as F,U as _}from"./Filter-Cb_YC5jN.js";const D=r.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -113,6 +113,11 @@ import{p as r,r as i,j as e,b as S,C as T}from"./index-BT54QvEX.js";import{P as 
 
     &::placeholder {
       color: rgba(29, 30, 33, 0.4);
+    }
+
+    > option {
+      background: var(--main-color);
+      color: rgba(255, 255, 255, 0.5);
     }
   }
 
