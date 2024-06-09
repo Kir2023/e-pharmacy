@@ -98,6 +98,55 @@ export const Input = styled.input`
   }
 `;
 
+export const SelectWrapper = styled.div`
+  position: relative;
+  width: 295px;
+  height: 44px;
+
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    height: 100%;
+    padding: 13px 18px;
+    box-sizing: border-box;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    color: rgba(29, 30, 33, 0.8);
+    background: #ffffff;
+    border: 1px solid rgba(29, 30, 33, 0.1);
+    border-radius: 60px;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      border: 1px solid var(--active-color);
+    }
+
+    &::placeholder {
+      color: rgba(29, 30, 33, 0.4);
+    }
+  }
+
+  svg {
+    position: absolute;
+    top: 50%;
+    right: 18px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    width: 24px;
+    height: 24px;
+    fill: white;
+    stroke: var(--main-text-color);
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 224px;
+  }
+`;
+
 export const ButtonsWrapper = styled.div`
   display: flex;
   gap: 8px;

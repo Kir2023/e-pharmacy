@@ -8,6 +8,7 @@ import {
   CloseButton,
   Form,
   Input,
+  SelectWrapper,
   ButtonsWrapper,
   Button,
   Title,
@@ -31,6 +32,7 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
   const [stock, setStock] = useState("");
   const [suppliers, setSuppliers] = useState("");
   const [price, setPrice] = useState("");
+  const [selectOpen, setSelectOpen] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -80,6 +82,22 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
     };
   }, [handleKeyDown, isOpen]);
 
+  const handleSelectClick = () => {
+    setSelectOpen((prev) => !prev);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest("select")) {
+        setSelectOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     isOpen && (
       <Modal onClick={handleOverlayClick}>
@@ -98,18 +116,26 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
               placeholder="Product Info"
               required
             />
-            <Input
-              as="select"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              required
-            >
-              {categories.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
-                </option>
-              ))}
-            </Input>
+            <SelectWrapper onClick={handleSelectClick}>
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                required
+              >
+                {categories.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+              </select>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                <use
+                  href={`./sprite.svg#icon-chevron-${
+                    selectOpen ? "up" : "down"
+                  }`}
+                />
+              </svg>
+            </SelectWrapper>
             <Input
               type="number"
               step="1"
