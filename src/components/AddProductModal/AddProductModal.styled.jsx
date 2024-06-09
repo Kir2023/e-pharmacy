@@ -16,21 +16,23 @@ export const Modal = styled.div`
 export const Title = styled.h1`
   font-size: 20px;
   font-weight: 600;
-  color: (--main-text-color);
+  color: var(--main-text-color);
   margin-top: 40px;
 `;
 
 export const ModalContent = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background-color: white;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 80%;
   max-width: 335px;
+  position: relative;
+
+  @media screen and (min-width: 768px) {
+    min-width: 536px;
+    height: 412px;
+  }
 `;
 
 export const CloseButton = styled.button`
@@ -47,6 +49,13 @@ export const CloseButton = styled.button`
     stroke: var(--main-text-color);
     stroke-width: 2;
   }
+
+  @media screen and (min-width: 768px) {
+    svg {
+      width: 26px;
+      height: 26px;
+    }
+  }
 `;
 
 export const Form = styled.form`
@@ -55,6 +64,11 @@ export const Form = styled.form`
   align-items: center;
   gap: 14px;
   margin-top: 20px;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 `;
 
 export const Input = styled.input`
@@ -74,68 +88,42 @@ export const Input = styled.input`
   &:focus {
     border: 1px solid var(--active-color);
   }
-`;
 
-export const CustomSelect = styled.div`
-  position: relative;
-  display: inline-block;
-  width: 100%;
-`;
+  &::placeholder {
+    color: rgba(29, 30, 33, 0.4);
+  }
 
-export const SelectInput = styled.select`
-  appearance: none;
-  width: 100%;
-  height: 44px;
-  padding: 13px 18px;
-  box-sizing: border-box;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 18px;
-  color: rgba(29, 30, 33, 0.8);
-  background: #ffffff;
-  border: 1px solid rgba(29, 30, 33, 0.1);
-  border-radius: 60px;
-`;
-
-export const SelectedOption = styled.div`
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #fff;
-`;
-
-export const OptionsContainer = styled.div`
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-top: none;
-  border-radius: 0 0 4px 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1;
-`;
-
-export const Option = styled.div`
-  padding: 8px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #f0f0f0;
+  @media screen and (min-width: 768px) {
+    width: 224px;
   }
 `;
 
-export const Button = styled.button`
-  padding: 10px;
-  margin-top: 10px;
-  cursor: pointer;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
+export const ButtonsWrapper = styled.div`
+  display: flex;
+  gap: 8px;
+  margin-top: 40px;
+`;
 
-  &:first-of-type {
-    margin-right: 10px;
+export const Button = styled.button`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 50px;
+  gap: 8px;
+  background-color: rgba(29, 30, 33, 0.1);
+  border-radius: 60px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 12px;
+  color: rgba(29, 30, 33, 0.4);
+  width: 140px;
+  height: 44px;
+
+  &:hover,
+  &:focus {
+    background-color: var(--active-color);
+    color: white;
   }
 `;
