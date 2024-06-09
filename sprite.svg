@@ -62,4 +62,10 @@
     <path d="M14.667 15.333v4"></path>
     <path d="M17.333 15.333v4"></path>
   </symbol>
+  <symbol id="icon-chevron-down" viewBox="0 0 32 32">
+    <path d="M8 12l8 8 8-8"></path>
+  </symbol>
+  <symbol id="icon-chevron-up" viewBox="0 0 32 32">
+    <path d="M8 20l8-8 8 8"></path>
+  </symbol>
 </svg>
