@@ -128,6 +128,11 @@ export const SelectWrapper = styled.div`
     &::placeholder {
       color: rgba(29, 30, 33, 0.4);
     }
+
+    > option {
+      background: var(--main-color);
+      color: rgba(255, 255, 255, 0.5);
+    }
   }
 
   svg {
