@@ -12,7 +12,8 @@ import {
   TableHeader,
   TableCell,
   Caption,
-  Button,
+  EditButton,
+  DeleteButton,
   AddProductButton,
 } from "./AllProducts.styled";
 import Pagination from "../Pagination/Pagination";
@@ -110,12 +111,26 @@ const AllProducts = ({ filter }) => {
                 <TableCell>{product.suppliers}</TableCell>
                 <TableCell>{product.price}</TableCell>
                 <TableCell>
-                  <Button onClick={() => handleEditProduct(product)}>
-                    Edit
-                  </Button>
-                  <Button onClick={() => handleDeleteProduct(product._id)}>
-                    Delete
-                  </Button>
+                  <span>
+                    <EditButton onClick={() => handleEditProduct(product)}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 32 32"
+                      >
+                        <use href="./sprite.svg#icon-pencil" />
+                      </svg>
+                    </EditButton>
+                    <DeleteButton
+                      onClick={() => handleDeleteProduct(product._id)}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 32 32"
+                      >
+                        <use href="./sprite.svg#icon-trash" />
+                      </svg>
+                    </DeleteButton>
+                  </span>
                 </TableCell>
               </TableRow>
             ))

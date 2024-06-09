@@ -25,7 +25,7 @@ export const Table = styled.table`
   }
 
   @media screen and (min-width: 1440px) {
-    width: 1280px;
+    width: 1320px;
   }
 `;
 
@@ -74,6 +74,11 @@ export const TableCell = styled.td`
   border-right: 1px solid #ddd;
   font-size: 12px;
 
+  span {
+  display: flex;
+  gap: 8px;
+  }
+
   &:last-child {
     border-right: none;
   }
@@ -82,17 +87,54 @@ export const TableCell = styled.td`
     font-size: 16px;
 `;
 
-export const Button = styled.button`
-  padding: 5px 10px;
-  margin-right: 5px;
-  background-color: #4caf50;
-  color: white;
+export const EditButton = styled.button`
+  background: none;
   border: none;
-  border-radius: 4px;
+  padding: 0;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: background-color 0.3s, color 0.3s;
 
-  &:hover {
-    background-color: #45a049;
+  svg {
+    width: 32px;
+    height: 32px;
+    stroke: var(--main-color);
+    fill: white;
+  }
+
+  &:hover svg,
+  &:focus svg {
+    fill: var(--main-color);
+    stroke: white;
+  }
+`;
+
+export const DeleteButton = styled.button`
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: background-color 0.3s, color 0.3s;
+
+  svg {
+    width: 32px;
+    height: 32px;
+    stroke: var(--cancel-color);
+    fill: white;
+  }
+
+  &:hover svg,
+  &:focus svg {
+    fill: var(--cancel-color);
+    stroke: white;
   }
 `;
 
@@ -104,6 +146,7 @@ export const AddProductButton = styled.button`
   cursor: pointer;
   font-size: 16px;
   color: #000;
+  margin-bottom: 20px;
 
   .circle {
     background-color: var(--main-color);
@@ -115,41 +158,16 @@ export const AddProductButton = styled.button`
     align-items: center;
     justify-content: center;
     margin-right: 10px;
+
+    &:hover {
+      background-color: var(--active-color);
+    }
   }
 
   @media screen and (min-width: 1440px) {
     position: absolute;
     left: 1223px;
     top: 117px;
+    margin-bottom: 0;
   }
-`;
-
-export const Modal = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const ModalContent = styled.div`
-  background: white;
-  padding: 20px;
-  border-radius: 4px;
-  width: 500px;
-  max-width: 100%;
-`;
-
-export const CloseButton = styled.button`
-  background: transparent;
-  border: none;
-  font-size: 20px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
 `;

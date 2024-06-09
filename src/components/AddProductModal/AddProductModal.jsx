@@ -6,10 +6,9 @@ import {
   ModalContent,
   CloseButton,
   Form,
-  FormGroup,
-  Label,
   Input,
   Button,
+  Title,
 } from "./AddProductModal.styled";
 
 const categories = [
@@ -48,71 +47,68 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
       );
       const addedProduct = response.data;
       console.log("Added product:", addedProduct);
-      onAddProduct(addedProduct); // Вызываем обратный вызов с новым продуктом
+      onAddProduct(addedProduct);
       onClose();
     } catch (error) {
       console.error("Error adding product:", error);
     }
   };
 
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget && isOpen) {
+      onClose();
+    }
+  };
+
   return (
     isOpen && (
-      <Modal>
+      <Modal onClick={handleOverlayClick}>
         <ModalContent>
-          <CloseButton onClick={onClose}>&times;</CloseButton>
+          <Title>Add a new product</Title>
+          <CloseButton onClick={onClose}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+              <use href="./sprite.svg#icon-cross" />
+            </svg>
+          </CloseButton>
           <Form onSubmit={handleSubmit}>
-            <FormGroup>
-              <Label>Product Info</Label>
-              <Input
-                type="text"
-                value={productInfo}
-                onChange={(e) => setProductInfo(e.target.value)}
-                required
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>Category</Label>
-              <Input
-                as="select"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                required
-              >
-                {categories.map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat}
-                  </option>
-                ))}
-              </Input>
-            </FormGroup>
-            <FormGroup>
-              <Label>Stock</Label>
-              <Input
-                type="number"
-                value={stock}
-                onChange={(e) => setStock(e.target.value)}
-                required
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>Suppliers</Label>
-              <Input
-                type="text"
-                value={suppliers}
-                onChange={(e) => setSuppliers(e.target.value)}
-                required
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>Price</Label>
-              <Input
-                type="number"
-                step="0.01"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                required
-              />
-            </FormGroup>
+            <Input
+              type="text"
+              value={productInfo}
+              onChange={(e) => setProductInfo(e.target.value)}
+              placeholder="Product Info"
+              required
+            />
+            <Input
+              as="select"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            >
+              {categories.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </Input>
+            <Input
+              type="number"
+              value={stock}
+              onChange={(e) => setStock(e.target.value)}
+              required
+            />
+            <Input
+              type="text"
+              value={suppliers}
+              onChange={(e) => setSuppliers(e.target.value)}
+              required
+            />
+            <Input
+              type="number"
+              step="0.01"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              required
+            />
             <Button type="submit">Add</Button>
             <Button type="button" onClick={onClose}>
               Cancel
