@@ -6,11 +6,26 @@ import {
   ModalContent,
   CloseButton,
   Form,
-  FormGroup,
-  Label,
   Input,
   Button,
+  Title,
+  ButtonsWrapper,
+  SelectWrapper,
 } from "./EditProductModal.styled";
+
+const categories = [
+  "Medicine",
+  "Head",
+  "Hand",
+  "Heart",
+  "Leg",
+  "Dental Care",
+  "Skin Care",
+  "Eye Care",
+  "Vitamins & Supplements",
+  "Orthopedic Products",
+  "Baby Care",
+];
 
 const EditProductModal = ({ isOpen, onClose, product, onSave }) => {
   const [editedProduct, setEditedProduct] = useState({
@@ -20,6 +35,7 @@ const EditProductModal = ({ isOpen, onClose, product, onSave }) => {
     suppliers: "",
     price: 0,
   });
+  const [selectOpen, setSelectOpen] = useState(false);
 
   useEffect(() => {
     setEditedProduct(product);
@@ -45,67 +61,89 @@ const EditProductModal = ({ isOpen, onClose, product, onSave }) => {
     }
   };
 
+  const handleSelectClick = () => {
+    setSelectOpen((prev) => !prev);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.target.closest("select")) {
+        setSelectOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     isOpen && (
       <Modal>
         <ModalContent>
-          <CloseButton onClick={onClose}>&times;</CloseButton>
+          <Title>Edit product</Title>
+          <CloseButton onClick={onClose}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+              <use href="./sprite.svg#icon-cross" />
+            </svg>
+          </CloseButton>
           <Form onSubmit={handleSubmit}>
-            <FormGroup>
-              <Label>Product Info</Label>
-              <Input
-                type="text"
-                name="name"
-                value={editedProduct.name}
-                onChange={handleChange}
-                required
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>Category</Label>
-              <Input
-                type="text"
+            <Input
+              type="text"
+              name="name"
+              value={editedProduct.name}
+              onChange={handleChange}
+              required
+            />
+            <SelectWrapper onClick={handleSelectClick}>
+              <select
                 name="category"
                 value={editedProduct.category}
                 onChange={handleChange}
                 required
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>Stock</Label>
-              <Input
-                type="number"
-                name="stock"
-                value={editedProduct.stock}
-                onChange={handleChange}
-                required
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>Suppliers</Label>
-              <Input
-                type="text"
-                name="suppliers"
-                value={editedProduct.suppliers}
-                onChange={handleChange}
-                required
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label>Price</Label>
-              <Input
-                type="number"
-                name="price"
-                step="0.01"
-                value={editedProduct.price}
-                onChange={handleChange}
-                required
-              />
-            </FormGroup>
-            <Button type="submit">Save</Button>
-            <Button type="button" onClick={onClose}>
-              Cancel
-            </Button>
+              >
+                {categories.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+              </select>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                <use
+                  href={`./sprite.svg#icon-chevron-${
+                    selectOpen ? "up" : "down"
+                  }`}
+                />
+              </svg>
+            </SelectWrapper>
+            <Input
+              type="number"
+              name="stock"
+              value={editedProduct.stock}
+              onChange={handleChange}
+              required
+            />
+            <Input
+              type="text"
+              name="suppliers"
+              value={editedProduct.suppliers}
+              onChange={handleChange}
+              required
+            />
+            <Input
+              type="number"
+              name="price"
+              step="0.01"
+              value={editedProduct.price}
+              onChange={handleChange}
+              required
+            />
+            <ButtonsWrapper>
+              <Button type="submit">Save</Button>
+              <Button type="button" onClick={onClose}>
+                Cancel
+              </Button>
+            </ButtonsWrapper>
           </Form>
         </ModalContent>
       </Modal>

@@ -18,6 +18,8 @@ const categories = [
   "Medicine",
   "Head",
   "Hand",
+  "Heart",
+  "Leg",
   "Dental Care",
   "Skin Care",
   "Eye Care",
