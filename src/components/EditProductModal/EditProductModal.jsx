@@ -61,6 +61,30 @@ const EditProductModal = ({ isOpen, onClose, product, onSave }) => {
     }
   };
 
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget && isOpen) {
+      onClose();
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Escape") {
+      onClose();
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    } else {
+      window.removeEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [handleKeyDown, isOpen]);
+
   const handleSelectClick = () => {
     setSelectOpen((prev) => !prev);
   };
@@ -79,7 +103,7 @@ const EditProductModal = ({ isOpen, onClose, product, onSave }) => {
 
   return (
     isOpen && (
-      <Modal>
+      <Modal onClick={handleOverlayClick}>
         <ModalContent>
           <Title>Edit product</Title>
           <CloseButton onClick={onClose}>

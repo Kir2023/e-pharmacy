@@ -88,24 +88,24 @@ const SidebarMenu = () => {
           </MenuItem>
           <MenuItem>
             <NavLink
-              to="/customers"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <Icon>
-                <svg viewBox="0 0 32 32">
-                  <use href={`${sprite}#icon-customers`} />
-                </svg>
-              </Icon>
-            </NavLink>
-          </MenuItem>
-          <MenuItem>
-            <NavLink
               to="/suppliers"
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               <Icon>
                 <svg viewBox="0 0 32 32">
                   <use href={`${sprite}#icon-suppliers`} />
+                </svg>
+              </Icon>
+            </NavLink>
+          </MenuItem>
+          <MenuItem>
+            <NavLink
+              to="/customers"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              <Icon>
+                <svg viewBox="0 0 32 32">
+                  <use href={`${sprite}#icon-customers`} />
                 </svg>
               </Icon>
             </NavLink>
