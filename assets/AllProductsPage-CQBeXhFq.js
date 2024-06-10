@@ -1,4 +1,4 @@
-import{p as r,r as i,j as e,b as P,C as q}from"./index-BiKtfBhu.js";import{P as T,U as I}from"./Filter-SwZqcDwd.js";const H=r.div`
+import{p as r,r as i,j as e,b as E,C as T}from"./index-CZBZP4mV.js";import{P as q,U as I}from"./Filter-DqGCQtk2.js";const D=r.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -9,7 +9,7 @@ import{p as r,r as i,j as e,b as P,C as q}from"./index-BiKtfBhu.js";import{P as 
   justify-content: center;
   align-items: center;
   z-index: 1000;
-`,D=r.h1`
+`,H=r.h1`
   font-size: 20px;
   font-weight: 600;
   color: var(--main-text-color);
@@ -140,7 +140,7 @@ import{p as r,r as i,j as e,b as P,C as q}from"./index-BiKtfBhu.js";import{P as 
   display: flex;
   gap: 8px;
   margin-top: 40px;
-`,O=r.button`
+`,$=r.button`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -162,7 +162,7 @@ import{p as r,r as i,j as e,b as P,C as q}from"./index-BiKtfBhu.js";import{P as 
     background-color: var(--active-color);
     color: white;
   }
-`,L=["Medicine","Head","Hand","Heart","Leg","Dental Care","Skin Care","Eye Care","Vitamins & Supplements","Orthopedic Products","Baby Care"],R=({isOpen:c,onClose:s,onAddProduct:l})=>{const[x,d]=i.useState(""),[u,g]=i.useState(L[0]),[m,h]=i.useState(""),[f,j]=i.useState(""),[n,p]=i.useState(""),[k,S]=i.useState(!1),E=async o=>{o.preventDefault();const t={name:x,category:u,stock:m,suppliers:f,price:n};try{const C=(await P.post("https://e-pharmacy-backend-ez9m.onrender.com/api/products",t)).data;console.log("Added product:",C),l(C),s()}catch(a){console.error("Error adding product:",a)}},z=o=>{o.target===o.currentTarget&&c&&s()},b=o=>{o.key==="Escape"&&s()};i.useEffect(()=>(c?window.addEventListener("keydown",b):window.removeEventListener("keydown",b),()=>{window.removeEventListener("keydown",b)}),[b,c]);const y=()=>{S(o=>!o)};return i.useEffect(()=>{const o=t=>{t.target.closest("select")||S(!1)};return document.addEventListener("mousedown",o),()=>{document.removeEventListener("mousedown",o)}},[]),c&&e.jsx(H,{onClick:z,children:e.jsxs(F,{children:[e.jsx(D,{children:"Add a new product"}),e.jsx(_,{onClick:s,children:e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:"./sprite.svg#icon-cross"})})}),e.jsxs(N,{onSubmit:E,children:[e.jsx(A,{type:"text",value:x,onChange:o=>d(o.target.value),placeholder:"Product Info",required:!0}),e.jsxs(W,{onClick:y,children:[e.jsx("select",{value:u,onChange:o=>g(o.target.value),required:!0,children:L.map(o=>e.jsx("option",{value:o,children:o},o))}),e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:`./sprite.svg#icon-chevron-${k?"up":"down"}`})})]}),e.jsx(A,{type:"number",step:"1",min:"1",value:m,onChange:o=>h(o.target.value),placeholder:"Stock",required:!0}),e.jsx(A,{type:"text",value:f,onChange:o=>j(o.target.value),placeholder:"Suppliers",required:!0}),e.jsx(A,{type:"number",step:"0.01",min:"0.01",value:n,onChange:o=>p(o.target.value),placeholder:"Price",required:!0}),e.jsxs(U,{children:[e.jsx(O,{type:"submit",children:"Add"}),e.jsx(O,{type:"button",onClick:s,children:"Cancel"})]})]})]})})},V=r.div`
+`,M=["Medicine","Head","Hand","Heart","Leg","Dental Care","Skin Care","Eye Care","Vitamins & Supplements","Orthopedic Products","Baby Care"],K=({isOpen:a,onClose:s,onAddProduct:p})=>{const[h,c]=i.useState(""),[g,f]=i.useState(M[0]),[m,u]=i.useState(""),[w,y]=i.useState(""),[x,C]=i.useState(""),[n,l]=i.useState(!1),v=async o=>{o.preventDefault();const t={name:h,category:g,stock:m,suppliers:w,price:x};try{const S=(await E.post("https://e-pharmacy-backend-ez9m.onrender.com/api/products",t)).data;console.log("Added product:",S),p(S),s()}catch(d){console.error("Error adding product:",d)}},z=o=>{o.target===o.currentTarget&&a&&s()},j=o=>{o.key==="Escape"&&s()};i.useEffect(()=>(a?window.addEventListener("keydown",j):window.removeEventListener("keydown",j),()=>{window.removeEventListener("keydown",j)}),[j,a]);const P=()=>{l(o=>!o)};return i.useEffect(()=>{const o=t=>{t.target.closest("select")||l(!1)};return document.addEventListener("mousedown",o),()=>{document.removeEventListener("mousedown",o)}},[]),a&&e.jsx(D,{onClick:z,children:e.jsxs(F,{children:[e.jsx(H,{children:"Add a new product"}),e.jsx(_,{onClick:s,children:e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:"./sprite.svg#icon-cross"})})}),e.jsxs(N,{onSubmit:v,children:[e.jsx(A,{type:"text",value:h,onChange:o=>c(o.target.value),placeholder:"Product Info",required:!0}),e.jsxs(W,{onClick:P,children:[e.jsx("select",{value:g,onChange:o=>f(o.target.value),required:!0,children:M.map(o=>e.jsx("option",{value:o,children:o},o))}),e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:`./sprite.svg#icon-chevron-${n?"up":"down"}`})})]}),e.jsx(A,{type:"number",step:"1",min:"1",value:m,onChange:o=>u(o.target.value),placeholder:"Stock",required:!0}),e.jsx(A,{type:"text",value:w,onChange:o=>y(o.target.value),placeholder:"Suppliers",required:!0}),e.jsx(A,{type:"number",step:"0.01",min:"0.01",value:x,onChange:o=>C(o.target.value),placeholder:"Price",required:!0}),e.jsxs(U,{children:[e.jsx($,{type:"submit",children:"Add"}),e.jsx($,{type:"button",onClick:s,children:"Cancel"})]})]})]})})},R=r.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -173,12 +173,12 @@ import{p as r,r as i,j as e,b as P,C as q}from"./index-BiKtfBhu.js";import{P as 
   justify-content: center;
   align-items: center;
   z-index: 1000;
-`,Y=r.h1`
+`,V=r.h1`
   font-size: 20px;
   font-weight: 600;
   color: var(--main-text-color);
   margin-top: 40px;
-`,K=r.div`
+`,Y=r.div`
   background-color: white;
   padding: 20px;
   border-radius: 8px;
@@ -296,7 +296,7 @@ import{p as r,r as i,j as e,b as P,C as q}from"./index-BiKtfBhu.js";import{P as 
   display: flex;
   gap: 8px;
   margin-top: 40px;
-`,M=r.button`
+`,O=r.button`
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -318,7 +318,7 @@ import{p as r,r as i,j as e,b as P,C as q}from"./index-BiKtfBhu.js";import{P as 
     background-color: var(--active-color);
     color: white;
   }
-`,Z=["Medicine","Head","Hand","Heart","Leg","Dental Care","Skin Care","Eye Care","Vitamins & Supplements","Orthopedic Products","Baby Care"],ee=({isOpen:c,onClose:s,product:l,onSave:x})=>{const[d,u]=i.useState({name:"",category:"",stock:0,suppliers:"",price:0}),[g,m]=i.useState(!1);i.useEffect(()=>{u(l)},[l]);const h=n=>{const{name:p,value:k}=n.target;u({...d,[p]:k})},f=async n=>{n.preventDefault();try{const p=await P.put(`https://e-pharmacy-backend-ez9m.onrender.com/api/products/${d._id}`,d);console.log("Product updated successfully:",p.data),x(d),s()}catch(p){console.error("Error updating product:",p)}},j=()=>{m(n=>!n)};return i.useEffect(()=>{const n=p=>{p.target.closest("select")||m(!1)};return document.addEventListener("mousedown",n),()=>{document.removeEventListener("mousedown",n)}},[]),c&&e.jsx(V,{children:e.jsxs(K,{children:[e.jsx(Y,{children:"Edit product"}),e.jsx(G,{onClick:s,children:e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:"./sprite.svg#icon-cross"})})}),e.jsxs(J,{onSubmit:f,children:[e.jsx(B,{type:"text",name:"name",value:d.name,onChange:h,required:!0}),e.jsxs(Q,{onClick:j,children:[e.jsx("select",{name:"category",value:d.category,onChange:h,required:!0,children:Z.map(n=>e.jsx("option",{value:n,children:n},n))}),e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:`./sprite.svg#icon-chevron-${g?"up":"down"}`})})]}),e.jsx(B,{type:"number",name:"stock",value:d.stock,onChange:h,required:!0}),e.jsx(B,{type:"text",name:"suppliers",value:d.suppliers,onChange:h,required:!0}),e.jsx(B,{type:"number",name:"price",step:"0.01",value:d.price,onChange:h,required:!0}),e.jsxs(X,{children:[e.jsx(M,{type:"submit",children:"Save"}),e.jsx(M,{type:"button",onClick:s,children:"Cancel"})]})]})]})})},te=r.div`
+`,Z=["Medicine","Head","Hand","Heart","Leg","Dental Care","Skin Care","Eye Care","Vitamins & Supplements","Orthopedic Products","Baby Care"],ee=({isOpen:a,onClose:s,product:p,onSave:h})=>{const[c,g]=i.useState({name:"",category:"",stock:0,suppliers:"",price:0}),[f,m]=i.useState(!1);i.useEffect(()=>{g(p)},[p]);const u=n=>{const{name:l,value:v}=n.target;g({...c,[l]:v})},w=async n=>{n.preventDefault();try{const l=await E.put(`https://e-pharmacy-backend-ez9m.onrender.com/api/products/${c._id}`,c);console.log("Product updated successfully:",l.data),h(c),s()}catch(l){console.error("Error updating product:",l)}},y=n=>{n.target===n.currentTarget&&a&&s()},x=n=>{n.key==="Escape"&&s()};i.useEffect(()=>(a?window.addEventListener("keydown",x):window.removeEventListener("keydown",x),()=>{window.removeEventListener("keydown",x)}),[x,a]);const C=()=>{m(n=>!n)};return i.useEffect(()=>{const n=l=>{l.target.closest("select")||m(!1)};return document.addEventListener("mousedown",n),()=>{document.removeEventListener("mousedown",n)}},[]),a&&e.jsx(R,{onClick:y,children:e.jsxs(Y,{children:[e.jsx(V,{children:"Edit product"}),e.jsx(G,{onClick:s,children:e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:"./sprite.svg#icon-cross"})})}),e.jsxs(J,{onSubmit:w,children:[e.jsx(B,{type:"text",name:"name",value:c.name,onChange:u,required:!0}),e.jsxs(Q,{onClick:C,children:[e.jsx("select",{name:"category",value:c.category,onChange:u,required:!0,children:Z.map(n=>e.jsx("option",{value:n,children:n},n))}),e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:`./sprite.svg#icon-chevron-${f?"up":"down"}`})})]}),e.jsx(B,{type:"number",name:"stock",value:c.stock,onChange:u,required:!0}),e.jsx(B,{type:"text",name:"suppliers",value:c.suppliers,onChange:u,required:!0}),e.jsx(B,{type:"number",name:"price",step:"0.01",value:c.price,onChange:u,required:!0}),e.jsxs(X,{children:[e.jsx(O,{type:"submit",children:"Save"}),e.jsx(O,{type:"button",onClick:s,children:"Cancel"})]})]})]})})},te=r.div`
   max-width: 335px;
   margin-top: 20px;
 
@@ -361,7 +361,7 @@ import{p as r,r as i,j as e,b as P,C as q}from"./index-BiKtfBhu.js";import{P as 
   @media screen and (min-width: 768px) {
     font-size: 14px;
   }
-`,ie=r.tbody``,$=r.tr``,v=r.th`
+`,ie=r.tbody``,L=r.tr``,k=r.th`
   padding: 12px;
   text-align: left;
   font-weight: bold;
@@ -371,7 +371,7 @@ import{p as r,r as i,j as e,b as P,C as q}from"./index-BiKtfBhu.js";import{P as 
   &:last-child {
     border-right: none;
   }
-`,w=r.td`
+`,b=r.td`
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -414,7 +414,7 @@ import{p as r,r as i,j as e,b as P,C as q}from"./index-BiKtfBhu.js";import{P as 
     fill: var(--main-color);
     stroke: white;
   }
-`,ae=r.button`
+`,de=r.button`
   background: none;
   border: none;
   padding: 0;
@@ -436,7 +436,7 @@ import{p as r,r as i,j as e,b as P,C as q}from"./index-BiKtfBhu.js";import{P as 
     fill: var(--cancel-color);
     stroke: white;
   }
-`,de=r.button`
+`,ae=r.button`
   display: flex;
   align-items: center;
   border: none;
@@ -468,4 +468,4 @@ import{p as r,r as i,j as e,b as P,C as q}from"./index-BiKtfBhu.js";import{P as 
     top: 117px;
     margin-bottom: 0;
   }
-`,ce=({filter:c})=>{const[s,l]=i.useState([]),[x,d]=i.useState(!1),[u,g]=i.useState(!1),[m,h]=i.useState(null),[f,j]=i.useState(1),n=5;i.useEffect(()=>{(async()=>{try{const a=await P.get("https://e-pharmacy-backend-ez9m.onrender.com/api/products");console.log("Fetched products:",a.data),Array.isArray(a.data.products)?l(a.data.products):console.error("Unexpected response format:",a.data)}catch(a){console.error("Error fetching products:",a)}})()},[]);const p=t=>{l([t,...s])},k=t=>{h(t),g(!0)},S=async t=>{try{await P.delete(`https://e-pharmacy-backend-ez9m.onrender.com/api/products/${t}`),l(s.filter(a=>a._id!==t))}catch(a){console.error("Error deleting product:",a)}},E=c?s.filter(t=>t.name&&t.name.toLowerCase().includes(c.toLowerCase())):s,z=f*n,b=z-n,y=E.slice(b,z),o=t=>j(t);return e.jsxs(te,{children:[e.jsxs(de,{onClick:()=>d(!0),children:[e.jsx("div",{className:"circle",children:"+"}),"Add a new product"]}),e.jsxs(re,{children:[e.jsx(oe,{children:"All Products"}),e.jsx(ne,{children:e.jsxs($,{children:[e.jsx(v,{children:"Product Info"}),e.jsx(v,{children:"Category"}),e.jsx(v,{children:"Stock"}),e.jsx(v,{children:"Suppliers"}),e.jsx(v,{children:"Price"}),e.jsx(v,{children:"Action"})]})}),e.jsx(ie,{children:Array.isArray(y)&&y.length>0?y.map(t=>e.jsxs($,{children:[e.jsx(w,{children:t.name}),e.jsx(w,{children:t.category}),e.jsx(w,{children:t.stock}),e.jsx(w,{children:t.suppliers}),e.jsx(w,{children:t.price}),e.jsx(w,{children:e.jsxs("span",{children:[e.jsx(se,{onClick:()=>k(t),children:e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:"./sprite.svg#icon-pencil"})})}),e.jsx(ae,{onClick:()=>S(t._id),children:e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:"./sprite.svg#icon-trash"})})})]})})]},t._id)):e.jsx($,{children:e.jsx(w,{colSpan:"6",children:"No products available"})})})]}),x&&e.jsx(R,{isOpen:x,onClose:()=>d(!1),onAddProduct:p}),u&&e.jsx(ee,{isOpen:u,onClose:()=>g(!1),product:m,onSave:t=>{P.put(`https://e-pharmacy-backend-ez9m.onrender.com/api/products/${t._id}`,t).then(a=>{console.log("Product updated successfully:",a.data),l(s.map(C=>C._id===t._id?t:C))}).catch(a=>{console.error("Error updating product:",a)}).finally(()=>{g(!1)})}}),e.jsx(T,{totalItems:E.length,itemsPerPage:n,currentPage:f,paginate:o})]})},xe=()=>{const[c,s]=i.useState(""),l=x=>{s(x)};return e.jsxs(q,{children:[e.jsx(I,{handleFilter:l,placeholder:"Product Name"}),e.jsx(ce,{filter:c})]})};export{xe as default};
+`,ce=({filter:a})=>{const[s,p]=i.useState([]),[h,c]=i.useState(!1),[g,f]=i.useState(!1),[m,u]=i.useState(null),[w,y]=i.useState(1),x=5;i.useEffect(()=>{(async()=>{try{const d=await E.get("https://e-pharmacy-backend-ez9m.onrender.com/api/products");console.log("Fetched products:",d.data),Array.isArray(d.data.products)?p(d.data.products):console.error("Unexpected response format:",d.data)}catch(d){console.error("Error fetching products:",d)}})()},[]);const C=t=>{p([t,...s])},n=t=>{u(t),f(!0)},l=async t=>{try{await E.delete(`https://e-pharmacy-backend-ez9m.onrender.com/api/products/${t}`),p(s.filter(d=>d._id!==t))}catch(d){console.error("Error deleting product:",d)}},v=a?s.filter(t=>t.name&&t.name.toLowerCase().includes(a.toLowerCase())):s,z=w*x,j=z-x,P=v.slice(j,z),o=t=>y(t);return e.jsxs(te,{children:[e.jsxs(ae,{onClick:()=>c(!0),children:[e.jsx("div",{className:"circle",children:"+"}),"Add a new product"]}),e.jsxs(re,{children:[e.jsx(oe,{children:"All Products"}),e.jsx(ne,{children:e.jsxs(L,{children:[e.jsx(k,{children:"Product Info"}),e.jsx(k,{children:"Category"}),e.jsx(k,{children:"Stock"}),e.jsx(k,{children:"Suppliers"}),e.jsx(k,{children:"Price"}),e.jsx(k,{children:"Action"})]})}),e.jsx(ie,{children:Array.isArray(P)&&P.length>0?P.map(t=>e.jsxs(L,{children:[e.jsx(b,{children:t.name}),e.jsx(b,{children:t.category}),e.jsx(b,{children:t.stock}),e.jsx(b,{children:t.suppliers}),e.jsx(b,{children:t.price}),e.jsx(b,{children:e.jsxs("span",{children:[e.jsx(se,{onClick:()=>n(t),children:e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:"./sprite.svg#icon-pencil"})})}),e.jsx(de,{onClick:()=>l(t._id),children:e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:"./sprite.svg#icon-trash"})})})]})})]},t._id)):e.jsx(L,{children:e.jsx(b,{colSpan:"6",children:"No products available"})})})]}),h&&e.jsx(K,{isOpen:h,onClose:()=>c(!1),onAddProduct:C}),g&&e.jsx(ee,{isOpen:g,onClose:()=>f(!1),product:m,onSave:t=>{E.put(`https://e-pharmacy-backend-ez9m.onrender.com/api/products/${t._id}`,t).then(d=>{console.log("Product updated successfully:",d.data),p(s.map(S=>S._id===t._id?t:S))}).catch(d=>{console.error("Error updating product:",d)}).finally(()=>{f(!1)})}}),e.jsx(q,{totalItems:v.length,itemsPerPage:x,currentPage:w,paginate:o})]})},xe=()=>{const[a,s]=i.useState(""),p=h=>{s(h)};return e.jsxs(T,{children:[e.jsx(I,{handleFilter:p,placeholder:"Product Name"}),e.jsx(ce,{filter:a})]})};export{xe as default};
