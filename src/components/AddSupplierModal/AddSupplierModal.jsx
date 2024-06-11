@@ -68,7 +68,7 @@ const AddSupplierModal = ({ onClose, onSave }) => {
     const formattedSupplier = {
       ...newSupplier,
       date: newSupplier.date ? newSupplier.date.toISOString() : "",
-      status: newSupplier.status, // Используем статус из состояния newSupplier
+      status: newSupplier.status,
     };
     onSave(formattedSupplier);
     onClose();

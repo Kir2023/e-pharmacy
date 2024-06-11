@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Modal,
   ModalContent,
@@ -8,14 +9,30 @@ import {
   Input,
   Button,
   Title,
+  ButtonsWrapper,
+  DatePickerWrapper,
+  SelectWrapper,
 } from "./EditSupplierModal.styled";
-import { format } from "date-fns";
+import ReactDatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+const statuses = ["Active", "Deactive"];
 
 const EditSupplierModal = ({ onClose, supplier, onSave }) => {
-  const [editedSupplier, setEditedSupplier] = useState(supplier);
+  const [editedSupplier, setEditedSupplier] = useState({
+    ...supplier,
+    date: supplier.date ? new Date(supplier.date) : null,
+    status: supplier.status || "Active",
+  });
+  const datePickerRef = useRef(null);
+  const [selectOpen, setSelectOpen] = useState(false);
 
   useEffect(() => {
-    setEditedSupplier(supplier);
+    setEditedSupplier({
+      ...supplier,
+      date: supplier.date ? new Date(supplier.date) : null,
+      status: supplier.status || "Active",
+    });
   }, [supplier]);
 
   const handleChange = (e) => {
@@ -23,31 +40,60 @@ const EditSupplierModal = ({ onClose, supplier, onSave }) => {
     setEditedSupplier({ ...editedSupplier, [name]: value });
   };
 
+  const handleDateChange = (date) => {
+    setEditedSupplier({ ...editedSupplier, date });
+  };
+
+  const handleCalendarIconClick = () => {
+    datePickerRef.current.setOpen(true);
+  };
+
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
+  const handleEscapeKeyPress = (e) => {
+    if (e.key === "Escape") {
+      onClose();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleEscapeKeyPress);
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKeyPress);
+    };
+  }, []);
+
   const handleSubmit = (e) => {
-    e.preventDefault();
-    onSave(editedSupplier);
-    onClose();
     e.preventDefault();
     const formattedSupplier = {
       ...editedSupplier,
-      date: new Date(editedSupplier.date).toISOString().substring(0, 10),
+      date: editedSupplier.date ? editedSupplier.date.toISOString() : "",
     };
     onSave(formattedSupplier);
     onClose();
   };
 
-  useEffect(() => {
-    setEditedSupplier({
-      ...supplier,
-      date: format(new Date(supplier.date), "MMMM dd, yyyy"),
-    });
-  }, [supplier]);
+  const handleSelectClick = () => {
+    setSelectOpen((prev) => !prev);
+  };
+
+  const handleSelectChange = (e) => {
+    setEditedSupplier({ ...editedSupplier, status: e.target.value });
+  };
 
   return (
-    <Modal>
+    <Modal onClick={handleOverlayClick}>
       <ModalContent>
-        <Title>Edit supplier</Title>
-        <CloseButton onClick={onClose}>×</CloseButton>
+        <Title>Edit Supplier</Title>
+        <CloseButton onClick={onClose}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+            <use href="./sprite.svg#icon-cross" />
+          </svg>
+        </CloseButton>
         <Form onSubmit={handleSubmit}>
           <Input
             type="text"
@@ -70,13 +116,24 @@ const EditSupplierModal = ({ onClose, supplier, onSave }) => {
             onChange={handleChange}
             required
           />
-          <Input
-            type="date"
-            name="date"
-            value={editedSupplier.date}
-            onChange={handleChange}
-            required
-          />
+          <DatePickerWrapper>
+            <ReactDatePicker
+              selected={editedSupplier.date}
+              onChange={handleDateChange}
+              placeholderText="Delivery Date"
+              dateFormat="MMMM dd, yyyy"
+              className="date-picker-input"
+              ref={datePickerRef}
+            />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 32 32"
+              className="date-picker-icon"
+              onClick={handleCalendarIconClick}
+            >
+              <use href="./sprite.svg#icon-calendar" />
+            </svg>
+          </DatePickerWrapper>
           <Input
             type="number"
             name="amount"
@@ -84,17 +141,30 @@ const EditSupplierModal = ({ onClose, supplier, onSave }) => {
             onChange={handleChange}
             required
           />
-          <Input
-            type="text"
-            name="status"
-            value={editedSupplier.status}
-            onChange={handleChange}
-            required
-          />
-          <Button type="submit">Save</Button>
-          <Button type="button" onClick={onClose}>
-            Cancel
-          </Button>
+          <SelectWrapper onClick={handleSelectClick}>
+            <select
+              value={editedSupplier.status}
+              onChange={handleSelectChange}
+              required
+            >
+              {statuses.map((stat) => (
+                <option key={stat} value={stat}>
+                  {stat}
+                </option>
+              ))}
+            </select>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+              <use
+                href={`./sprite.svg#icon-chevron-${selectOpen ? "up" : "down"}`}
+              />
+            </svg>
+          </SelectWrapper>
+          <ButtonsWrapper>
+            <Button type="submit">Save</Button>
+            <Button type="button" onClick={onClose}>
+              Cancel
+            </Button>
+          </ButtonsWrapper>
         </Form>
       </ModalContent>
     </Modal>
