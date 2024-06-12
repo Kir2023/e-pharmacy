@@ -1,18 +1,22 @@
-import axios from "axios";
+import { useDispatch } from "react-redux";
 import Logo from "../../components/Logo/Logo";
 import LogoutBtn from "../../components/LogoutBtn/LogoutBtn";
 import SubTitle from "../../components/SubTitle/SubTitle";
 import PageTitle from "../../components/Title/Title";
 import { Wrapper } from "./Header.styled";
+import { logOutThunk } from "../../redux/auth/authOperations";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const handleLogout = async () => {
     try {
-      await axios.get('https://e-pharmacy-backend-ez9m.onrender.com/api/user/logout');
-      localStorage.removeItem('token');
-      console.log('Logout successful');
+      await dispatch(logOutThunk()).unwrap();
+      navigate("/login");
     } catch (error) {
-      console.error('Logout error:', error);
+      console.error("Logout error:", error);
     }
   };
 

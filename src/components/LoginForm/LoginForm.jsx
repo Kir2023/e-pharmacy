@@ -8,9 +8,8 @@ import {
   InputWrapper,
 } from "./LoginForm.styled";
 import { useState } from "react";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { loginSuccess } from "../../redux/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { loginThunk } from "../../redux/auth/authOperations";
 import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
@@ -22,6 +21,7 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const error = useSelector((state) => state.auth.error);
 
   const handleTogglePassword = () => {
     setShowPassword((prevState) => !prevState);
@@ -32,16 +32,8 @@ const LoginForm = () => {
 
   const handleLogin = async (values, { setSubmitting, setFieldError }) => {
     try {
-      console.log("Submitting values: ", values);
-      const response = await axios.post(
-        "https://e-pharmacy-backend-ez9m.onrender.com/api/user/login",
-        values
-      );
-      console.log("Response: ", response);
-      const token = response.data.token;
-      dispatch(loginSuccess(token));
+      await dispatch(loginThunk(values));
       navigate("/dashboard");
-      console.log("Login successful, token:", token);
     } catch (error) {
       console.error("Login error:", error);
       setFieldError("email", "Invalid email or password");
@@ -85,6 +77,8 @@ const LoginForm = () => {
               </PasswordToggleBtn>
             </InputWrapper>
             <ErrorMessage name="password" component="span" />
+
+            {error && <div className="error">{error}</div>}
 
             <LoginBtn type="submit" disabled={isSubmitting}>
               Log in
