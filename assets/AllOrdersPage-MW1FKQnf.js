@@ -1,4 +1,4 @@
-import{p as t,r as c,j as e,b as j,C as P}from"./index-DziqZbVS.js";import{P as C,U as O}from"./Filter-B1tZesti.js";const v=t.div`
+import{p as t,r as c,j as e,c as j,C as P}from"./index-DateuD7A.js";import{P as C,u as O,U as v}from"./useFilter-JgYEFyx4.js";const y=t.div`
   max-width: 335px;
   margin-top: 20px;
 
@@ -9,7 +9,7 @@ import{p as t,r as c,j as e,b as j,C as P}from"./index-DziqZbVS.js";import{P as 
   @media screen and (min-width: 1440px) {
     max-width: 1280px;
   }
-`,y=t.table`
+`,z=t.table`
   background-color: #ffffff;
   width: 671px;
   border-collapse: collapse;
@@ -33,10 +33,10 @@ import{p as t,r as c,j as e,b as j,C as P}from"./index-DziqZbVS.js";import{P as 
   @media screen and (min-width: 768px) {
     font-size: 18px;
   }
-`,z=t.thead`
+`,T=t.thead`
   color: rgba(29, 30, 33, 0.4);
   font-weight: 500;
-`,T=t.tbody``,m=t.tr``,s=t.th`
+`,U=t.tbody``,h=t.tr``,s=t.th`
   padding: 12px;
   text-align: left;
   font-size: 14px;
@@ -73,7 +73,7 @@ import{p as t,r as c,j as e,b as j,C as P}from"./index-DziqZbVS.js";import{P as 
   @media screen and (min-width: 768px) {
     font-size: 14px;
   }
-`,U=t.div`
+`,k=t.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -82,7 +82,7 @@ import{p as t,r as c,j as e,b as j,C as P}from"./index-DziqZbVS.js";import{P as 
     align-items: center;
     flex-direction: row;
   }
-`,k=t.img`
+`,A=t.img`
   width: 24px;
   height: 24px;
 
@@ -90,4 +90,4 @@ import{p as t,r as c,j as e,b as j,C as P}from"./index-DziqZbVS.js";import{P as 
     width: 36px;
     height: 36px;
   }
-`,A=({filter:n})=>{const[i,l]=c.useState([]),[o,g]=c.useState(1),x=5;c.useEffect(()=>{(async()=>{try{const d=await j.get("https://e-pharmacy-backend-ez9m.onrender.com/api/orders");l(d.data)}catch(d){console.error("Error fetching orders:",d)}})()},[]);const u=r=>{const d={month:"long",day:"numeric",year:"numeric"};return new Date(r).toLocaleDateString("en-US",d)},p=n?i.filter(r=>r.name.toLowerCase().includes(n.toLowerCase())):i,h=o*x,f=h-x,b=p.slice(f,h),w=r=>g(r);return e.jsxs(v,{children:[e.jsxs(y,{children:[e.jsx(S,{children:"All orders"}),e.jsx(z,{children:e.jsxs(m,{children:[e.jsx(s,{children:"User Info"}),e.jsx(s,{children:"Address"}),e.jsx(s,{children:"Products"}),e.jsx(s,{children:"Order date"}),e.jsx(s,{children:"Price"}),e.jsx(s,{children:"Status"})]})}),e.jsx(T,{children:b.map(r=>e.jsxs(m,{children:[e.jsx(a,{children:e.jsxs(U,{children:[e.jsx(k,{src:r.photo,alt:r.name}),r.name]})}),e.jsx(a,{children:r.address}),e.jsx(a,{children:r.products}),e.jsx(a,{children:u(r.order_date)}),e.jsx(a,{children:r.price}),e.jsx(a,{type:r.status,children:e.jsx("span",{children:r.status})})]},r._id))})]}),e.jsx(C,{totalItems:p.length,itemsPerPage:x,currentPage:o,paginate:w})]})},L=()=>{const[n,i]=c.useState(""),l=o=>{i(o)};return e.jsxs(P,{children:[e.jsx(O,{handleFilter:l,placeholder:"User Name"}),e.jsx(A,{filter:n})]})};export{L as default};
+`,D=({filter:n})=>{const[i,m]=c.useState([]),[l,g]=c.useState(1),o=5;c.useEffect(()=>{(async()=>{try{const d=await j.get("https://e-pharmacy-backend-ez9m.onrender.com/api/orders");m(d.data)}catch(d){console.error("Error fetching orders:",d)}})()},[]);const u=r=>{const d={month:"long",day:"numeric",year:"numeric"};return new Date(r).toLocaleDateString("en-US",d)},x=n?i.filter(r=>r.name.toLowerCase().includes(n.toLowerCase())):i,p=l*o,f=p-o,b=x.slice(f,p),w=r=>g(r);return e.jsxs(y,{children:[e.jsxs(z,{children:[e.jsx(S,{children:"All orders"}),e.jsx(T,{children:e.jsxs(h,{children:[e.jsx(s,{children:"User Info"}),e.jsx(s,{children:"Address"}),e.jsx(s,{children:"Products"}),e.jsx(s,{children:"Order date"}),e.jsx(s,{children:"Price"}),e.jsx(s,{children:"Status"})]})}),e.jsx(U,{children:b.map(r=>e.jsxs(h,{children:[e.jsx(a,{children:e.jsxs(k,{children:[e.jsx(A,{src:r.photo,alt:r.name}),r.name]})}),e.jsx(a,{children:r.address}),e.jsx(a,{children:r.products}),e.jsx(a,{children:u(r.order_date)}),e.jsx(a,{children:r.price}),e.jsx(a,{type:r.status,children:e.jsx("span",{children:r.status})})]},r._id))})]}),e.jsx(C,{totalItems:x.length,itemsPerPage:o,currentPage:l,paginate:w})]})},H=()=>{const{filter:n,handleFilter:i}=O();return e.jsxs(P,{children:[e.jsx(v,{handleFilter:i,placeholder:"User Name"}),e.jsx(D,{filter:n})]})};export{H as default};

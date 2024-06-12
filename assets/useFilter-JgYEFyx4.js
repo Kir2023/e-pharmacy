@@ -1,4 +1,4 @@
-import{p as e,j as r,r as d}from"./index-DziqZbVS.js";const x=e.div`
+import{p as o,j as r,r as d}from"./index-DateuD7A.js";const x=o.div`
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -11,7 +11,7 @@ import{p as e,j as r,r as d}from"./index-DziqZbVS.js";const x=e.div`
   @media screen and (min-width: 1440px) {
     width: 1280px;
   }
-`,c=e.button`
+`,c=o.button`
   width: 9.5px;
   height: 9.5px;
   background-color: #e7f1ed;
@@ -27,14 +27,14 @@ import{p as e,j as r,r as d}from"./index-DziqZbVS.js";const x=e.div`
   &:hover {
     background-color: var(--active-color);
   }
-`,u=({totalItems:n,itemsPerPage:a,currentPage:t,paginate:s})=>{const i=[];for(let o=1;o<=Math.ceil(n/a);o++)i.push(o);return r.jsx(x,{children:i.map(o=>r.jsx(c,{className:t===o?"active":"",onClick:()=>s(o)},o))})},l=e.div`
+`,f=({totalItems:t,itemsPerPage:i,currentPage:n,paginate:a})=>{const s=[];for(let e=1;e<=Math.ceil(t/i);e++)s.push(e);return r.jsx(x,{children:s.map(e=>r.jsx(c,{className:n===e?"active":"",onClick:()=>a(e)},e))})},l=o.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 10px;
   max-width: 300px;
   margin: 20px 0;
-`,g=e.input`
+`,g=o.input`
   width: 215px;
   height: 44px;
   padding: 13px 18px;
@@ -54,7 +54,7 @@ import{p as e,j as r,r as d}from"./index-DziqZbVS.js";const x=e.div`
   @media screen and (min-width: 768px) {
     width: 224px;
   }
-`,h=e.button`
+`,h=o.button`
   display: flex;
   align-items: center;
   gap: 8px;
@@ -76,15 +76,15 @@ import{p as e,j as r,r as d}from"./index-DziqZbVS.js";const x=e.div`
     width: 14px;
     height: 14px;
   }
-`;e.ul`
+`;o.ul`
   list-style-type: none;
   padding: 0;
   margin: 10px 0;
   width: 100%;
-`;e.li`
+`;o.li`
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
   margin-bottom: 4px;
   font-size: 14px;
-`;const m=({handleFilter:n,placeholder:a})=>{const[t,s]=d.useState(""),i=p=>{s(p.target.value)},o=p=>{p.key==="Enter"&&n(t)};return r.jsxs(l,{children:[r.jsx(g,{type:"text",value:t,onChange:i,onKeyDown:o,placeholder:a}),r.jsxs(h,{onClick:()=>n(t),children:[r.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:r.jsx("use",{href:"./sprite.svg#icon-filter"})}),"Filter"]})]})};export{u as P,m as U};
+`;const m=({handleFilter:t,placeholder:i})=>{const[n,a]=d.useState(""),s=p=>{a(p.target.value)},e=p=>{p.key==="Enter"&&t(n)};return r.jsxs(l,{children:[r.jsx(g,{type:"text",value:n,onChange:s,onKeyDown:e,placeholder:i}),r.jsxs(h,{onClick:()=>t(n),children:[r.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:r.jsx("use",{href:"./sprite.svg#icon-filter"})}),"Filter"]})]})},b=()=>{const[t,i]=d.useState("");return{filter:t,handleFilter:a=>{i(a)}}};export{f as P,m as U,b as u};
