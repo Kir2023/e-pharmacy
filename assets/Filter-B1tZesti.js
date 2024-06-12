@@ -1,4 +1,4 @@
-import{p as e,j as r,r as d}from"./index-BaIEqwlo.js";const x=e.div`
+import{p as e,j as r,r as d}from"./index-DziqZbVS.js";const x=e.div`
   display: flex;
   justify-content: center;
   margin-top: 20px;
