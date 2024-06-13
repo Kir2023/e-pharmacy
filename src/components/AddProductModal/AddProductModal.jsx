@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../redux/products/productOperations";
 import {
   Modal,
   ModalContent,
@@ -13,6 +14,7 @@ import {
   Button,
   Title,
 } from "./AddProductModal.styled";
+import { Notify } from "notiflix";
 
 const categories = [
   "Medicine",
@@ -28,7 +30,8 @@ const categories = [
   "Baby Care",
 ];
 
-const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
+const AddProductModal = ({ isOpen, onClose }) => {
+  const dispatch = useDispatch();
   const [productInfo, setProductInfo] = useState("");
   const [category, setCategory] = useState(categories[0]);
   const [stock, setStock] = useState("");
@@ -47,16 +50,15 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
     };
 
     try {
-      const response = await axios.post(
-        "https://e-pharmacy-backend-ez9m.onrender.com/api/products",
-        newProduct
-      );
-      const addedProduct = response.data;
-      console.log("Added product:", addedProduct);
-      onAddProduct(addedProduct);
-      onClose();
+      const resultAction = await dispatch(addProduct(newProduct));
+      if (addProduct.fulfilled.match(resultAction)) {
+        Notify.success("Product added successfully");
+        onClose();
+      } else {
+        Notify.failure("Failed to add product");
+      }
     } catch (error) {
-      console.error("Error adding product:", error);
+      Notify.failure("Error adding product");
     }
   };
 
@@ -82,7 +84,7 @@ const AddProductModal = ({ isOpen, onClose, onAddProduct }) => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [handleKeyDown, isOpen]);
+  }, [isOpen]);
 
   const handleSelectClick = () => {
     setSelectOpen((prev) => !prev);

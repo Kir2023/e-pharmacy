@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { updateProduct } from "../../redux/products/productOperations";
 import {
   Modal,
   ModalContent,
@@ -12,6 +14,7 @@ import {
   ButtonsWrapper,
   SelectWrapper,
 } from "./EditProductModal.styled";
+import { Notify } from "notiflix";
 
 const categories = [
   "Medicine",
@@ -27,7 +30,8 @@ const categories = [
   "Baby Care",
 ];
 
-const EditProductModal = ({ isOpen, onClose, product, onSave }) => {
+const EditProductModal = ({ isOpen, onClose, product }) => {
+  const dispatch = useDispatch();
   const [editedProduct, setEditedProduct] = useState({
     name: "",
     category: "",
@@ -49,15 +53,15 @@ const EditProductModal = ({ isOpen, onClose, product, onSave }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(
-        `https://e-pharmacy-backend-ez9m.onrender.com/api/products/${editedProduct._id}`,
-        editedProduct
-      );
-      console.log("Product updated successfully:", response.data);
-      onSave(editedProduct);
-      onClose();
+      const resultAction = await dispatch(updateProduct(editedProduct));
+      if (updateProduct.fulfilled.match(resultAction)) {
+        Notify.success("Product updated successfully");
+        onClose();
+      } else {
+        Notify.failure("Failed to update product");
+      }
     } catch (error) {
-      console.error("Error updating product:", error);
+      Notify.failure("Error updating product:");
     }
   };
 
@@ -83,7 +87,7 @@ const EditProductModal = ({ isOpen, onClose, product, onSave }) => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [handleKeyDown, isOpen]);
+  }, [isOpen]);
 
   const handleSelectClick = () => {
     setSelectOpen((prev) => !prev);

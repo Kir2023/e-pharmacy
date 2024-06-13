@@ -31,12 +31,13 @@ const LoginForm = () => {
     showPassword ? "./sprite.svg#icon-eye-on" : "./sprite.svg#icon-eye-off";
 
   const handleLogin = async (values, { setSubmitting, setFieldError }) => {
-    try {
-      await dispatch(loginThunk(values));
+    const resultAction = await dispatch(loginThunk(values));
+
+    if (loginThunk.fulfilled.match(resultAction)) {
       navigate("/dashboard");
-    } catch (error) {
-      console.error("Login error:", error);
-      setFieldError("email", "Invalid email or password");
+    } else {
+      setFieldError("email");
+      setFieldError("password");
     }
 
     setSubmitting(false);

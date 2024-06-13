@@ -17,7 +17,9 @@ export const loginThunk = createAsyncThunk(
       setToken(data.token);
       return data;
     } catch (err) {
-      return thunkApi.rejectWithValue(err);
+      return thunkApi.rejectWithValue(
+        err.response?.data?.message || "Invalid email or password"
+      );
     }
   }
 );

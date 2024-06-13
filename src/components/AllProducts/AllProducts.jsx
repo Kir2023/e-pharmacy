@@ -1,6 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchProducts,
+  deleteProduct,
+  addProduct,
+  updateProduct,
+} from "../../redux/products/productOperations";
 import AddProductModal from "../AddProductModal/AddProductModal";
 import EditProductModal from "../EditProductModal/EditProductModal";
 import {
@@ -17,9 +23,11 @@ import {
   AddProductButton,
 } from "./AllProducts.styled";
 import Pagination from "../Pagination/Pagination";
+import { Notify } from "notiflix";
 
 const AllProducts = ({ filter }) => {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products.items);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editedProduct, setEditedProduct] = useState(null);
@@ -27,27 +35,21 @@ const AllProducts = ({ filter }) => {
   const productsPerPage = 5;
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get(
-          "https://e-pharmacy-backend-ez9m.onrender.com/api/products"
-        );
-        console.log("Fetched products:", response.data);
-        if (Array.isArray(response.data.products)) {
-          setProducts(response.data.products);
-        } else {
-          console.error("Unexpected response format:", response.data);
-        }
-      } catch (error) {
-        console.error("Error fetching products:", error);
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  const handleAddProduct = async (newProduct) => {
+    try {
+      const resultAction = await dispatch(addProduct(newProduct));
+      if (addProduct.fulfilled.match(resultAction)) {
+        Notify.success("Product added successfully");
+      } else {
+        Notify.failure("Failed to add product:", resultAction.payload);
       }
-    };
-
-    fetchProducts();
-  }, []);
-
-  const handleAddProduct = (newProduct) => {
-    setProducts([newProduct, ...products]);
+    } catch (error) {
+      Notify.failure("Error adding product");
+    }
+    setIsAddModalOpen(false);
   };
 
   const handleEditProduct = (product) => {
@@ -55,14 +57,30 @@ const AllProducts = ({ filter }) => {
     setIsEditModalOpen(true);
   };
 
+  const handleSaveProduct = async (editedProduct) => {
+    try {
+      const resultAction = await dispatch(updateProduct(editedProduct));
+      if (updateProduct.fulfilled.match(resultAction)) {
+        Notify.success("Product updated successfull");
+      } else {
+        Notify.failure("Failed to update product");
+      }
+    } catch (error) {
+      Notify.failure("Error updating product");
+    }
+    setIsEditModalOpen(false);
+  };
+
   const handleDeleteProduct = async (id) => {
     try {
-      await axios.delete(
-        `https://e-pharmacy-backend-ez9m.onrender.com/api/products/${id}`
-      );
-      setProducts(products.filter((product) => product._id !== id));
+      const resultAction = await dispatch(deleteProduct(id));
+      if (deleteProduct.fulfilled.match(resultAction)) {
+        Notify.success("Product deleted successfully");
+      } else {
+        Notify.failure("Failed to delete product");
+      }
     } catch (error) {
-      console.error("Error deleting product:", error);
+      Notify.failure("Error deleting product");
     }
   };
 
@@ -102,43 +120,31 @@ const AllProducts = ({ filter }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {Array.isArray(currentProducts) && currentProducts.length > 0 ? (
-            currentProducts.map((product) => (
-              <TableRow key={product._id}>
-                <TableCell>{product.name}</TableCell>
-                <TableCell>{product.category}</TableCell>
-                <TableCell>{product.stock}</TableCell>
-                <TableCell>{product.suppliers}</TableCell>
-                <TableCell>{product.price}</TableCell>
-                <TableCell>
-                  <span>
-                    <EditButton onClick={() => handleEditProduct(product)}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 32 32"
-                      >
-                        <use href="./sprite.svg#icon-pencil" />
-                      </svg>
-                    </EditButton>
-                    <DeleteButton
-                      onClick={() => handleDeleteProduct(product._id)}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 32 32"
-                      >
-                        <use href="./sprite.svg#icon-trash" />
-                      </svg>
-                    </DeleteButton>
-                  </span>
-                </TableCell>
-              </TableRow>
-            ))
-          ) : (
-            <TableRow>
-              <TableCell colSpan="6">No products available</TableCell>
+          {currentProducts.map((product) => (
+            <TableRow key={product._id}>
+              <TableCell>{product.name}</TableCell>
+              <TableCell>{product.category}</TableCell>
+              <TableCell>{product.stock}</TableCell>
+              <TableCell>{product.suppliers}</TableCell>
+              <TableCell>{product.price}</TableCell>
+              <TableCell>
+                <span>
+                  <EditButton onClick={() => handleEditProduct(product)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                      <use href="./sprite.svg#icon-pencil" />
+                    </svg>
+                  </EditButton>
+                  <DeleteButton
+                    onClick={() => handleDeleteProduct(product._id)}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                      <use href="./sprite.svg#icon-trash" />
+                    </svg>
+                  </DeleteButton>
+                </span>
+              </TableCell>
             </TableRow>
-          )}
+          ))}
         </TableBody>
       </Table>
       {isAddModalOpen && (
@@ -153,35 +159,17 @@ const AllProducts = ({ filter }) => {
           isOpen={isEditModalOpen}
           onClose={() => setIsEditModalOpen(false)}
           product={editedProduct}
-          onSave={(editedProduct) => {
-            axios
-              .put(
-                `https://e-pharmacy-backend-ez9m.onrender.com/api/products/${editedProduct._id}`,
-                editedProduct
-              )
-              .then((response) => {
-                console.log("Product updated successfully:", response.data);
-                setProducts(
-                  products.map((product) =>
-                    product._id === editedProduct._id ? editedProduct : product
-                  )
-                );
-              })
-              .catch((error) => {
-                console.error("Error updating product:", error);
-              })
-              .finally(() => {
-                setIsEditModalOpen(false);
-              });
-          }}
+          onSave={handleSaveProduct}
         />
       )}
-      <Pagination
-        totalItems={filteredProducts.length}
-        itemsPerPage={productsPerPage}
-        currentPage={currentPage}
-        paginate={paginate}
-      />
+      {filteredProducts.length > productsPerPage && (
+        <Pagination
+          totalItems={filteredProducts.length}
+          itemsPerPage={productsPerPage}
+          currentPage={currentPage}
+          paginate={paginate}
+        />
+      )}
     </TableContainer>
   );
 };
