@@ -1,6 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchSuppliers,
+  addSupplier,
+  updateSupplier,
+} from "../../redux/suppliers/suppliersOperations";
 import AddSupplierModal from "../AddSupplierModal/AddSupplierModal";
 import EditSupplierModal from "../EditSupplierModal/EditSupplierModal";
 import {
@@ -15,11 +20,12 @@ import {
   Caption,
   EditButton,
 } from "./AllSuppliers.styled";
-import { format } from "date-fns";
 import Pagination from "../Pagination/Pagination";
+import { Notify } from "notiflix";
 
 const AllSuppliers = ({ filter }) => {
-  const [suppliers, setSuppliers] = useState([]);
+  const dispatch = useDispatch();
+  const suppliers = useSelector((state) => state.suppliers.items);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedSupplier, setSelectedSupplier] = useState(null);
@@ -28,50 +34,26 @@ const AllSuppliers = ({ filter }) => {
   const suppliersPerPage = 5;
 
   useEffect(() => {
-    fetchSuppliers();
-  }, []);
-
-  const fetchSuppliers = async () => {
-    try {
-      const response = await axios.get(
-        "https://e-pharmacy-backend-ez9m.onrender.com/api/suppliers"
-      );
-      const formattedSuppliers = response.data.map((supplier) => ({
-        ...supplier,
-        date: format(new Date(supplier.date), "MMMM dd, yyyy"),
-      }));
-      setSuppliers(formattedSuppliers);
-    } catch (error) {
-      console.error("Error fetching suppliers:", error);
-    }
-  };
+    dispatch(fetchSuppliers());
+  }, [dispatch]);
 
   const handleAddSupplier = async (newSupplier) => {
     try {
-      const response = await axios.post(
-        "https://e-pharmacy-backend-ez9m.onrender.com/api/suppliers",
-        newSupplier
-      );
-      setSuppliers([...suppliers, response.data]);
-      fetchSuppliers();
+      await dispatch(addSupplier(newSupplier)).unwrap();
+      dispatch(fetchSuppliers());
+      Notify.success("Supplier successfully added");
     } catch (error) {
-      console.error("Error adding supplier:", error);
+      Notify.failure("Error adding supplier");
     }
   };
 
   const handleEditSupplier = async (updatedSupplier) => {
     try {
-      const response = await axios.put(
-        `https://e-pharmacy-backend-ez9m.onrender.com/api/suppliers/${updatedSupplier._id}`,
-        updatedSupplier
-      );
-      const updatedSuppliers = suppliers.map((supplier) =>
-        supplier._id === updatedSupplier._id ? response.data : supplier
-      );
-      setSuppliers(updatedSuppliers);
-      fetchSuppliers();
+      await dispatch(updateSupplier(updatedSupplier)).unwrap();
+      dispatch(fetchSuppliers());
+      Notify.success("Supplier successfully edited");
     } catch (error) {
-      console.error("Error editing supplier:", error);
+      Notify.failure("Error editing supplier");
     }
   };
 
@@ -103,16 +85,16 @@ const AllSuppliers = ({ filter }) => {
 
   return (
     <TableContainer>
-      <AddButton onClick={openAddModal}>Add a new suppliers</AddButton>
+      <AddButton onClick={openAddModal}>Add a new supplier</AddButton>
       <Table>
         <Caption>All Suppliers</Caption>
         <TableHead>
           <TableRow>
-            <TableHeader>Suppliers Info</TableHeader>
+            <TableHeader>Supplier Info</TableHeader>
             <TableHeader>Address</TableHeader>
             <TableHeader>Company</TableHeader>
             <TableHeader>Delivery Date</TableHeader>
-            <TableHeader>Ammount</TableHeader>
+            <TableHeader>Amount</TableHeader>
             <TableHeader>Status</TableHeader>
             <TableHeader>Action</TableHeader>
           </TableRow>

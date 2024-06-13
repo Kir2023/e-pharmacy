@@ -68,7 +68,6 @@ const AddSupplierModal = ({ onClose, onSave }) => {
     const formattedSupplier = {
       ...newSupplier,
       date: newSupplier.date ? newSupplier.date.toISOString() : "",
-      status: newSupplier.status,
     };
     onSave(formattedSupplier);
     onClose();
@@ -135,8 +134,10 @@ const AddSupplierModal = ({ onClose, onSave }) => {
             </svg>
           </DatePickerWrapper>
           <Input
-            type="text"
+            type="number"
             name="amount"
+            min="0"
+            step="1"
             value={newSupplier.amount}
             onChange={handleChange}
             placeholder="Amount"

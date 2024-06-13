@@ -137,6 +137,8 @@ const EditSupplierModal = ({ onClose, supplier, onSave }) => {
           <Input
             type="number"
             name="amount"
+            min="0"
+            step="1"
             value={editedSupplier.amount}
             onChange={handleChange}
             required
