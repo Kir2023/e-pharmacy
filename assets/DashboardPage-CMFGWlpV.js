@@ -1,4 +1,4 @@
-import{p as t,r as i,j as e,c as f,L as j,s as o,C as v}from"./index-DateuD7A.js";const y=t.div`
+import{p as t,r as i,j as e,c as f,L as j,s as o,C as v}from"./index-CY38vA15.js";const y=t.div`
   max-width: 335px;
   margin-top: 20px;
 
