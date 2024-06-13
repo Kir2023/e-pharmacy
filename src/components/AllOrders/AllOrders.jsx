@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchOrders } from "../../redux/orders/ordersOperations";
 import {
   TableContainer,
   Table,
@@ -16,24 +17,14 @@ import {
 import Pagination from "../Pagination/Pagination";
 
 const AllOrders = ({ filter }) => {
-  const [orders, setOrders] = useState([]);
+  const dispatch = useDispatch();
+  const orders = useSelector((state) => state.orders.items);
   const [currentPage, setCurrentPage] = useState(1);
   const ordersPerPage = 5;
 
   useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const response = await axios.get(
-          "https://e-pharmacy-backend-ez9m.onrender.com/api/orders"
-        );
-        setOrders(response.data);
-      } catch (error) {
-        console.error("Error fetching orders:", error);
-      }
-    };
-
-    fetchOrders();
-  }, []);
+    dispatch(fetchOrders());
+  }, [dispatch]);
 
   const formatDate = (dateString) => {
     const options = { month: "long", day: "numeric", year: "numeric" };
@@ -90,12 +81,14 @@ const AllOrders = ({ filter }) => {
           ))}
         </TableBody>
       </Table>
-      <Pagination
-        totalItems={filteredOrders.length}
-        itemsPerPage={ordersPerPage}
-        currentPage={currentPage}
-        paginate={paginate}
-      />
+      {filteredOrders.length > ordersPerPage && (
+        <Pagination
+          totalItems={filteredOrders.length}
+          itemsPerPage={ordersPerPage}
+          currentPage={currentPage}
+          paginate={paginate}
+        />
+      )}
     </TableContainer>
   );
 };
