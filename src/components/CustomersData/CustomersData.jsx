@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import {
   TableContainer,
@@ -14,26 +14,17 @@ import {
   Avatar,
 } from "./CustomersData.styled";
 import Pagination from "../Pagination/Pagination";
+import { fetchCustomers } from "../../redux/customers/customersOperations";
 
 const CustomersData = ({ filter }) => {
-  const [customers, setCustomers] = useState([]);
+  const dispatch = useDispatch();
+  const customers = useSelector((state) => state.customers.items);
   const [currentPage, setCurrentPage] = useState(1);
   const customersPerPage = 5;
 
   useEffect(() => {
-    const fetchCustomers = async () => {
-      try {
-        const response = await axios.get(
-          "https://e-pharmacy-backend-ez9m.onrender.com/api/customers"
-        );
-        setCustomers(response.data);
-      } catch (error) {
-        console.error("Error fetching customers:", error);
-      }
-    };
-
-    fetchCustomers();
-  }, []);
+    dispatch(fetchCustomers());
+  }, [dispatch]);
 
   const formatDate = (dateString) => {
     const options = { month: "long", day: "numeric", year: "numeric" };

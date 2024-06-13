@@ -15,6 +15,7 @@ import { authReducer } from "../redux/auth/authSlice";
 import productReducer from "../redux/products/productSlice";
 import supplierReducer from "./suppliers/suppliersSlice";
 import orderReducer from "./orders/ordersSlice";
+import customerReducer from "./customers/customersSlice";
 
 const authConfig = {
   key: "auth",
@@ -28,6 +29,7 @@ export const store = configureStore({
     products: productReducer,
     suppliers: supplierReducer,
     orders: orderReducer,
+    customers: customerReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
