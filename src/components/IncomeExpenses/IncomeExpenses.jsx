@@ -1,5 +1,5 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   TableContainer,
   Table,
@@ -12,24 +12,15 @@ import {
   TableCellName,
   TableCellAmount,
 } from "./IncomeExpenses.styled";
+import { fetchDashboard } from "../../redux/dashboard/dashboardOperations";
 
 const IncomeExpenses = () => {
-  const [transactions, setTransactions] = useState([]);
+  const dispatch = useDispatch();
+  const transactions = useSelector((state) => state.dashboard.transactions);
 
   useEffect(() => {
-    const fetchTransactions = async () => {
-      try {
-        const response = await axios.get(
-          "https://e-pharmacy-backend-ez9m.onrender.com/api/dashboard"
-        );
-        setTransactions(response.data.recentTransactions);
-      } catch (error) {
-        console.error("Error fetching transactions:", error);
-      }
-    };
-
-    fetchTransactions();
-  }, []);
+    dispatch(fetchDashboard());
+  }, [dispatch]);
 
   return (
     <TableContainer>

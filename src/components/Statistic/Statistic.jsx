@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import Loader from "../Loader/Loader";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   StatisticWrapper,
   StatisticItem,
@@ -8,37 +7,17 @@ import {
   StatisticValue,
 } from "./Statistic.styled";
 import sprite from "../../../public/sprite.svg";
+import { fetchDashboard } from "../../redux/dashboard/dashboardOperations";
 
 const Statistic = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+  const { totalProducts, totalSuppliers, totalCustomers } = useSelector(
+    (state) => state.dashboard
+  );
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://e-pharmacy-backend-ez9m.onrender.com/api/dashboard"
-        );
-        setData(response.data);
-        console.log(response.data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  if (loading) {
-    return <Loader />;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+    dispatch(fetchDashboard());
+  }, [dispatch]);
 
   return (
     <StatisticWrapper>
@@ -49,7 +28,7 @@ const Statistic = () => {
           </svg>
           All products
         </StatisticLabel>
-        <StatisticValue>{data.totalProducts}</StatisticValue>
+        <StatisticValue>{totalProducts}</StatisticValue>
       </StatisticItem>
       <StatisticItem>
         <StatisticLabel>
@@ -58,7 +37,7 @@ const Statistic = () => {
           </svg>
           All suppliers
         </StatisticLabel>
-        <StatisticValue>{data.totalSuppliers}</StatisticValue>
+        <StatisticValue>{totalSuppliers}</StatisticValue>
       </StatisticItem>
       <StatisticItem>
         <StatisticLabel>
@@ -67,7 +46,7 @@ const Statistic = () => {
           </svg>
           All customers
         </StatisticLabel>
-        <StatisticValue>{data.totalCustomers}</StatisticValue>
+        <StatisticValue>{totalCustomers}</StatisticValue>
       </StatisticItem>
     </StatisticWrapper>
   );

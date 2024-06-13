@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
@@ -10,9 +11,11 @@ import {
 } from "./SidebarMenu.styled";
 import sprite from "../../../public/sprite.svg";
 import LogoutBtn from "../LogoutBtn/LogoutBtn";
-import axios from "axios";
+import { logOutThunk } from "../../redux/auth/authOperations";
+import { Notify } from "notiflix";
 
 const SidebarMenu = () => {
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -21,13 +24,14 @@ const SidebarMenu = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get(
-        "https://e-pharmacy-backend-ez9m.onrender.com/api/user/logout"
-      );
-      localStorage.removeItem("token");
-      console.log("Logout successful");
+      const resultAction = await dispatch(logOutThunk());
+      if (logOutThunk.fulfilled.match(resultAction)) {
+        localStorage.removeItem("token");
+      } else {
+        Notify.failure("Logout failed");
+      }
     } catch (error) {
-      console.error("Logout error:", error);
+      Notify.failure("Logout error");
     }
   };
 

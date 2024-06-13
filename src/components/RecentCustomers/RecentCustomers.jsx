@@ -1,27 +1,29 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { TableContainer, Table, TableHead, TableBody, TableRow, TableHeader, TableCell, Caption } from './RecentCustomers.styled';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  TableContainer,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableHeader,
+  TableCell,
+  Caption,
+} from "./RecentCustomers.styled";
+import { fetchDashboard } from "../../redux/dashboard/dashboardOperations";
 
 const RecentCustomers = () => {
-  const [customers, setCustomers] = useState([]);
+  const dispatch = useDispatch();
+  const customers = useSelector((state) => state.dashboard.recentCustomers);
 
   useEffect(() => {
-    const fetchCustomers = async () => {
-      try {
-        const response = await axios.get('https://e-pharmacy-backend-ez9m.onrender.com/api/dashboard');
-        setCustomers(response.data.recentCustomers);
-      } catch (error) {
-        console.error('Error fetching customers:', error);
-      }
-    };
-
-    fetchCustomers();
-  }, []);
+    dispatch(fetchDashboard());
+  }, [dispatch]);
 
   return (
     <TableContainer>
       <Table>
-      <Caption>Recent Customers</Caption>
+        <Caption>Recent Customers</Caption>
         <TableHead>
           <TableRow>
             <TableHeader>Name</TableHeader>
