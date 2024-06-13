@@ -1,4 +1,4 @@
-import{p as t,r as c,j as e,c as j,C as P}from"./index-CSjtoLoC.js";import{P as C,u as O,U as v}from"./useFilter-DrZ4YSvI.js";const y=t.div`
+import{p as t,a as w,b as P,r as p,f as C,j as e,C as v}from"./index-Cj5J5OBR.js";import{P as O,u as y,U as S}from"./useFilter-BjyFM_oN.js";const T=t.div`
   max-width: 335px;
   margin-top: 20px;
 
@@ -23,7 +23,7 @@ import{p as t,r as c,j as e,c as j,C as P}from"./index-CSjtoLoC.js";import{P as 
   @media screen and (min-width: 1440px) {
     width: 1280px;
   }
-`,S=t.caption`
+`,D=t.caption`
   font-size: 16px;
   font-weight: bold;
   text-align: left;
@@ -33,10 +33,10 @@ import{p as t,r as c,j as e,c as j,C as P}from"./index-CSjtoLoC.js";import{P as 
   @media screen and (min-width: 768px) {
     font-size: 18px;
   }
-`,T=t.thead`
+`,U=t.thead`
   color: rgba(29, 30, 33, 0.4);
   font-weight: 500;
-`,U=t.tbody``,h=t.tr``,s=t.th`
+`,A=t.tbody``,h=t.tr``,s=t.th`
   padding: 12px;
   text-align: left;
   font-size: 14px;
@@ -82,7 +82,7 @@ import{p as t,r as c,j as e,c as j,C as P}from"./index-CSjtoLoC.js";import{P as 
     align-items: center;
     flex-direction: row;
   }
-`,A=t.img`
+`,F=t.img`
   width: 24px;
   height: 24px;
 
@@ -90,4 +90,4 @@ import{p as t,r as c,j as e,c as j,C as P}from"./index-CSjtoLoC.js";import{P as 
     width: 36px;
     height: 36px;
   }
-`,D=({filter:n})=>{const[i,m]=c.useState([]),[l,g]=c.useState(1),o=5;c.useEffect(()=>{(async()=>{try{const d=await j.get("https://e-pharmacy-backend-ez9m.onrender.com/api/orders");m(d.data)}catch(d){console.error("Error fetching orders:",d)}})()},[]);const u=r=>{const d={month:"long",day:"numeric",year:"numeric"};return new Date(r).toLocaleDateString("en-US",d)},x=n?i.filter(r=>r.name.toLowerCase().includes(n.toLowerCase())):i,p=l*o,f=p-o,b=x.slice(f,p),w=r=>g(r);return e.jsxs(y,{children:[e.jsxs(z,{children:[e.jsx(S,{children:"All orders"}),e.jsx(T,{children:e.jsxs(h,{children:[e.jsx(s,{children:"User Info"}),e.jsx(s,{children:"Address"}),e.jsx(s,{children:"Products"}),e.jsx(s,{children:"Order date"}),e.jsx(s,{children:"Price"}),e.jsx(s,{children:"Status"})]})}),e.jsx(U,{children:b.map(r=>e.jsxs(h,{children:[e.jsx(a,{children:e.jsxs(k,{children:[e.jsx(A,{src:r.photo,alt:r.name}),r.name]})}),e.jsx(a,{children:r.address}),e.jsx(a,{children:r.products}),e.jsx(a,{children:u(r.order_date)}),e.jsx(a,{children:r.price}),e.jsx(a,{type:r.status,children:e.jsx("span",{children:r.status})})]},r._id))})]}),e.jsx(C,{totalItems:x.length,itemsPerPage:o,currentPage:l,paginate:w})]})},H=()=>{const{filter:n,handleFilter:i}=O();return e.jsxs(P,{children:[e.jsx(v,{handleFilter:i,placeholder:"User Name"}),e.jsx(D,{filter:n})]})};export{H as default};
+`,L=({filter:n})=>{const d=w(),c=P(r=>r.orders.items),[l,m]=p.useState(1),i=5;p.useEffect(()=>{d(C())},[d]);const g=r=>{const j={month:"long",day:"numeric",year:"numeric"};return new Date(r).toLocaleDateString("en-US",j)},o=n?c.filter(r=>r.name.toLowerCase().includes(n.toLowerCase())):c,x=l*i,u=x-i,f=o.slice(u,x),b=r=>m(r);return e.jsxs(T,{children:[e.jsxs(z,{children:[e.jsx(D,{children:"All orders"}),e.jsx(U,{children:e.jsxs(h,{children:[e.jsx(s,{children:"User Info"}),e.jsx(s,{children:"Address"}),e.jsx(s,{children:"Products"}),e.jsx(s,{children:"Order date"}),e.jsx(s,{children:"Price"}),e.jsx(s,{children:"Status"})]})}),e.jsx(A,{children:f.map(r=>e.jsxs(h,{children:[e.jsx(a,{children:e.jsxs(k,{children:[e.jsx(F,{src:r.photo,alt:r.name}),r.name]})}),e.jsx(a,{children:r.address}),e.jsx(a,{children:r.products}),e.jsx(a,{children:g(r.order_date)}),e.jsx(a,{children:r.price}),e.jsx(a,{type:r.status,children:e.jsx("span",{children:r.status})})]},r._id))})]}),o.length>i&&e.jsx(O,{totalItems:o.length,itemsPerPage:i,currentPage:l,paginate:b})]})},N=()=>{const{filter:n,handleFilter:d}=y();return e.jsxs(v,{children:[e.jsx(S,{handleFilter:d,placeholder:"User Name"}),e.jsx(L,{filter:n})]})};export{N as default};
