@@ -1,4 +1,4 @@
-import{p as t,a as w,b as P,r as p,c as C,j as e,C as v}from"./index-Q8v5hQXb.js";import{P as O,u as y,U as S}from"./useFilter-DaMO_boF.js";const T=t.div`
+import{p as t,a as C,b as v,r as c,j as e,c as O,C as y}from"./index-BhDmYLhS.js";import{P as S,u as T,U as D}from"./useFilter-DHxwx7ml.js";import{T as z}from"./TableLoader-B9ofIuCv.js";const A=t.div`
   max-width: 335px;
   margin-top: 20px;
 
@@ -9,7 +9,7 @@ import{p as t,a as w,b as P,r as p,c as C,j as e,C as v}from"./index-Q8v5hQXb.js
   @media screen and (min-width: 1440px) {
     max-width: 1280px;
   }
-`,z=t.table`
+`,L=t.table`
   background-color: #ffffff;
   width: 671px;
   border-collapse: collapse;
@@ -23,7 +23,7 @@ import{p as t,a as w,b as P,r as p,c as C,j as e,C as v}from"./index-Q8v5hQXb.js
   @media screen and (min-width: 1440px) {
     width: 1280px;
   }
-`,D=t.caption`
+`,U=t.caption`
   font-size: 16px;
   font-weight: bold;
   text-align: left;
@@ -33,10 +33,10 @@ import{p as t,a as w,b as P,r as p,c as C,j as e,C as v}from"./index-Q8v5hQXb.js
   @media screen and (min-width: 768px) {
     font-size: 18px;
   }
-`,U=t.thead`
+`,k=t.thead`
   color: rgba(29, 30, 33, 0.4);
   font-weight: 500;
-`,A=t.tbody``,h=t.tr``,s=t.th`
+`,F=t.tbody``,l=t.tr``,a=t.th`
   padding: 12px;
   text-align: left;
   font-size: 14px;
@@ -47,7 +47,7 @@ import{p as t,a as w,b as P,r as p,c as C,j as e,C as v}from"./index-Q8v5hQXb.js
   &:last-child {
     border-right: none;
   }
-`,a=t.td`
+`,s=t.td`
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -73,7 +73,7 @@ import{p as t,a as w,b as P,r as p,c as C,j as e,C as v}from"./index-Q8v5hQXb.js
   @media screen and (min-width: 768px) {
     font-size: 14px;
   }
-`,k=t.div`
+`,E=t.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -82,7 +82,7 @@ import{p as t,a as w,b as P,r as p,c as C,j as e,C as v}from"./index-Q8v5hQXb.js
     align-items: center;
     flex-direction: row;
   }
-`,F=t.img`
+`,H=t.img`
   width: 24px;
   height: 24px;
 
@@ -90,4 +90,4 @@ import{p as t,a as w,b as P,r as p,c as C,j as e,C as v}from"./index-Q8v5hQXb.js
     width: 36px;
     height: 36px;
   }
-`,L=({filter:n})=>{const d=w(),c=P(r=>r.orders.items),[l,m]=p.useState(1),i=5;p.useEffect(()=>{d(C())},[d]);const g=r=>{const j={month:"long",day:"numeric",year:"numeric"};return new Date(r).toLocaleDateString("en-US",j)},o=n?c.filter(r=>r.name.toLowerCase().includes(n.toLowerCase())):c,x=l*i,u=x-i,f=o.slice(u,x),b=r=>m(r);return e.jsxs(T,{children:[e.jsxs(z,{children:[e.jsx(D,{children:"All orders"}),e.jsx(U,{children:e.jsxs(h,{children:[e.jsx(s,{children:"User Info"}),e.jsx(s,{children:"Address"}),e.jsx(s,{children:"Products"}),e.jsx(s,{children:"Order date"}),e.jsx(s,{children:"Price"}),e.jsx(s,{children:"Status"})]})}),e.jsx(A,{children:f.map(r=>e.jsxs(h,{children:[e.jsx(a,{children:e.jsxs(k,{children:[e.jsx(F,{src:r.photo,alt:r.name}),r.name]})}),e.jsx(a,{children:r.address}),e.jsx(a,{children:r.products}),e.jsx(a,{children:g(r.order_date)}),e.jsx(a,{children:r.price}),e.jsx(a,{type:r.status,children:e.jsx("span",{children:r.status})})]},r._id))})]}),o.length>i&&e.jsx(O,{totalItems:o.length,itemsPerPage:i,currentPage:l,paginate:b})]})},N=()=>{const{filter:n,handleFilter:d}=y();return e.jsxs(v,{children:[e.jsx(S,{handleFilter:d,placeholder:"User Name"}),e.jsx(L,{filter:n})]})};export{N as default};
+`,I=({filter:n})=>{const d=C(),x=v(r=>r.orders.items),[p,u]=c.useState(1),[h,m]=c.useState(!0),i=5;c.useEffect(()=>{(async()=>{m(!0),await d(O()),m(!1)})()},[d]);const f=r=>{const P={month:"long",day:"numeric",year:"numeric"};return new Date(r).toLocaleDateString("en-US",P)},o=n?x.filter(r=>r.name.toLowerCase().includes(n.toLowerCase())):x,g=p*i,b=g-i,j=o.slice(b,g),w=r=>u(r);return e.jsxs(A,{children:[e.jsxs(L,{children:[e.jsx(U,{children:"All orders"}),e.jsx(k,{children:e.jsxs(l,{children:[e.jsx(a,{children:"User Info"}),e.jsx(a,{children:"Address"}),e.jsx(a,{children:"Products"}),e.jsx(a,{children:"Order date"}),e.jsx(a,{children:"Price"}),e.jsx(a,{children:"Status"})]})}),e.jsx(F,{children:h?e.jsx(l,{children:e.jsx(s,{colSpan:"6",style:{textAlign:"center"},children:e.jsx(z,{})})}):j.map(r=>e.jsxs(l,{children:[e.jsx(s,{children:e.jsxs(E,{children:[e.jsx(H,{src:r.photo,alt:r.name}),r.name]})}),e.jsx(s,{children:r.address}),e.jsx(s,{children:r.products}),e.jsx(s,{children:f(r.order_date)}),e.jsx(s,{children:r.price}),e.jsx(s,{type:r.status,children:e.jsx("span",{children:r.status})})]},r._id))})]}),o.length>i&&!h&&e.jsx(S,{totalItems:o.length,itemsPerPage:i,currentPage:p,paginate:w})]})},B=()=>{const{filter:n,handleFilter:d}=T();return e.jsxs(y,{children:[e.jsx(D,{handleFilter:d,placeholder:"User Name"}),e.jsx(I,{filter:n})]})};export{B as default};
