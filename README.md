@@ -1,8 +1,38 @@
-# React + Vite
+# Веб застосунок для медичного магазину
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+                                            КОРОТКИЙ ОПИС
 
-Currently, two official plugins are available:
+Застосунок складається з 5-х сторінок:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- DasboardPage - містить компоненти Statistics, Recent Customers, Income/Expenses. Компонент Statistic призначений для відображення статистичних даних щодо продуктів, постачальників та замовників.Компонент Recent Customers рендерить таблицю з останніми 5-ма клієнтами. Компонент Income/Expenses містить таблицю зі списком доходів та витрат.
+
+- AllOrdersPage - містить таблицю усіх замовлень, а також можливість фільтрації за іменем замовника.
+
+- AllProductsPage - містить таблицю усіх продуктів, можливість фільтрації за назвою продукту, а також кнопки додавання, редагування, та видалення продуктів.
+
+- містить таблицю усіх постачальників, можливість фільтрації за іменем постачальника, а також кнопки для додавання та редагування постачальників.
+
+- CustomersDataPage - містить таблицю з даними усіх користувачів.
+
+                                          ДОМАШНЯ СТОРІНКА
+
+Необхідна для привітання користувачів та надання інформації з послуг компанії. Має панель навігації у хедері для переходу на інші сторінки.
+
+                                            ВИКОРИСТАНІ ТЕХНОЛОГІЇ
+
+- HTML
+- CSS
+- JavaScript
+- React.js
+- Redux
+- Redux Toolkit
+
+                                            ТЕХНІЧНЕ ЗАВДАННЯ
+
+Розробити веб-додаток на React для відображення інформації про доходи, витрати та інші статистичні дані медичного магазину.
+
+https://docs.google.com/spreadsheets/d/1ufIlG2HwqppnY1by3HD4l6TVGq4EoW_o8b-ubA-pQq4/edit?gid=0#gid=0
+
+                                            МАКЕТ
+
+https://www.figma.com/design/2E2GuitEKROvVv6CvHWmQO/Admin-dashboard-(Copy)?node-id=92-1039&t=CTAVwRqV0bOCPTZg-0
