@@ -61,7 +61,7 @@ const AllProducts = ({ filter }) => {
     try {
       const resultAction = await dispatch(updateProduct(editedProduct));
       if (updateProduct.fulfilled.match(resultAction)) {
-        Notify.success("Product updated successfull");
+        Notify.success("Product updated successfully");
       } else {
         Notify.failure("Failed to update product");
       }
