@@ -5,6 +5,7 @@ import Loader from "./components/Loader/Loader";
 import PrivateRoute from "./routes/PrivateRoute";
 
 const LoginPage = lazy(() => import("./pages/LoginPage/LoginPage"));
+const WelcomePage = lazy(() => import("./pages/WelcomePage/WelcomePage"));
 const DashboardPage = lazy(() => import("./pages/DashboardPage/DashboardPage"));
 const AllOrdersPage = lazy(() => import("./pages/AllOrdersPage/AllOrdersPage"));
 const AllProductsPage = lazy(() =>
@@ -32,6 +33,7 @@ function App() {
               </PrivateRoute>
             }
           >
+            <Route index element={<WelcomePage />} />
             <Route path="dashboard" element={<DashboardPage />} />
             <Route path="orders" element={<AllOrdersPage />} />
             <Route path="products" element={<AllProductsPage />} />

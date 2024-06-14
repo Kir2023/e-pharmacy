@@ -34,7 +34,7 @@ const LoginForm = () => {
     const resultAction = await dispatch(loginThunk(values));
 
     if (loginThunk.fulfilled.match(resultAction)) {
-      navigate("/dashboard");
+      navigate("/");
     } else {
       setFieldError("email");
       setFieldError("password");
