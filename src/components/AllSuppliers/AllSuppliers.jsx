@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchSuppliers,
@@ -22,6 +22,7 @@ import {
 } from "./AllSuppliers.styled";
 import Pagination from "../Pagination/Pagination";
 import { Notify } from "notiflix";
+import TableLoader from "../TableLoader/TableLoader";
 
 const AllSuppliers = ({ filter }) => {
   const dispatch = useDispatch();
@@ -30,11 +31,18 @@ const AllSuppliers = ({ filter }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedSupplier, setSelectedSupplier] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   const suppliersPerPage = 5;
 
   useEffect(() => {
-    dispatch(fetchSuppliers());
+    const fetchData = async () => {
+      setLoading(true);
+      await dispatch(fetchSuppliers());
+      setLoading(false);
+    };
+
+    fetchData();
   }, [dispatch]);
 
   const handleAddSupplier = async (newSupplier) => {
@@ -100,26 +108,34 @@ const AllSuppliers = ({ filter }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {currentSuppliers.map((supplier) => (
-            <TableRow key={supplier._id}>
-              <TableCell>{supplier.name}</TableCell>
-              <TableCell>{supplier.address}</TableCell>
-              <TableCell>{supplier.suppliers}</TableCell>
-              <TableCell>{supplier.date}</TableCell>
-              <TableCell>{supplier.amount}</TableCell>
-              <TableCell type={supplier.status}>
-                <span>{supplier.status}</span>
-              </TableCell>
-              <TableCell>
-                <EditButton onClick={() => openEditModal(supplier)}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                    <use href="./sprite.svg#icon-small-pencil" />
-                  </svg>
-                  Edit
-                </EditButton>
+          {loading ? (
+            <TableRow>
+              <TableCell colSpan="7" style={{ textAlign: "center" }}>
+                <TableLoader />
               </TableCell>
             </TableRow>
-          ))}
+          ) : (
+            currentSuppliers.map((supplier) => (
+              <TableRow key={supplier._id}>
+                <TableCell>{supplier.name}</TableCell>
+                <TableCell>{supplier.address}</TableCell>
+                <TableCell>{supplier.suppliers}</TableCell>
+                <TableCell>{supplier.date}</TableCell>
+                <TableCell>{supplier.amount}</TableCell>
+                <TableCell type={supplier.status}>
+                  <span>{supplier.status}</span>
+                </TableCell>
+                <TableCell>
+                  <EditButton onClick={() => openEditModal(supplier)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                      <use href="./sprite.svg#icon-small-pencil" />
+                    </svg>
+                    Edit
+                  </EditButton>
+                </TableCell>
+              </TableRow>
+            ))
+          )}
         </TableBody>
       </Table>
       {isAddModalOpen && (

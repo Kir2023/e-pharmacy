@@ -24,6 +24,7 @@ import {
 } from "./AllProducts.styled";
 import Pagination from "../Pagination/Pagination";
 import { Notify } from "notiflix";
+import TableLoader from "../TableLoader/TableLoader";
 
 const AllProducts = ({ filter }) => {
   const dispatch = useDispatch();
@@ -32,10 +33,17 @@ const AllProducts = ({ filter }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [editedProduct, setEditedProduct] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const productsPerPage = 5;
 
   useEffect(() => {
-    dispatch(fetchProducts());
+    const fetchData = async () => {
+      setLoading(true);
+      await dispatch(fetchProducts());
+      setLoading(false);
+    };
+
+    fetchData();
   }, [dispatch]);
 
   const handleAddProduct = async (newProduct) => {
@@ -120,31 +128,45 @@ const AllProducts = ({ filter }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {currentProducts.map((product) => (
-            <TableRow key={product._id}>
-              <TableCell>{product.name}</TableCell>
-              <TableCell>{product.category}</TableCell>
-              <TableCell>{product.stock}</TableCell>
-              <TableCell>{product.suppliers}</TableCell>
-              <TableCell>{product.price}</TableCell>
-              <TableCell>
-                <span>
-                  <EditButton onClick={() => handleEditProduct(product)}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                      <use href="./sprite.svg#icon-pencil" />
-                    </svg>
-                  </EditButton>
-                  <DeleteButton
-                    onClick={() => handleDeleteProduct(product._id)}
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                      <use href="./sprite.svg#icon-trash" />
-                    </svg>
-                  </DeleteButton>
-                </span>
+          {loading ? (
+            <TableRow>
+              <TableCell colSpan="6" style={{ textAlign: "center" }}>
+                <TableLoader />
               </TableCell>
             </TableRow>
-          ))}
+          ) : (
+            currentProducts.map((product) => (
+              <TableRow key={product._id}>
+                <TableCell>{product.name}</TableCell>
+                <TableCell>{product.category}</TableCell>
+                <TableCell>{product.stock}</TableCell>
+                <TableCell>{product.suppliers}</TableCell>
+                <TableCell>{product.price}</TableCell>
+                <TableCell>
+                  <span>
+                    <EditButton onClick={() => handleEditProduct(product)}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 32 32"
+                      >
+                        <use href="./sprite.svg#icon-pencil" />
+                      </svg>
+                    </EditButton>
+                    <DeleteButton
+                      onClick={() => handleDeleteProduct(product._id)}
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 32 32"
+                      >
+                        <use href="./sprite.svg#icon-trash" />
+                      </svg>
+                    </DeleteButton>
+                  </span>
+                </TableCell>
+              </TableRow>
+            ))
+          )}
         </TableBody>
       </Table>
       {isAddModalOpen && (

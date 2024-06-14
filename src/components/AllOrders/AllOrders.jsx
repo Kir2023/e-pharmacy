@@ -15,15 +15,23 @@ import {
   UserWrapper,
 } from "./AllOrders.styled";
 import Pagination from "../Pagination/Pagination";
+import TableLoader from "../TableLoader/TableLoader";
 
 const AllOrders = ({ filter }) => {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.orders.items);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const ordersPerPage = 5;
 
   useEffect(() => {
-    dispatch(fetchOrders());
+    const fetchData = async () => {
+      setLoading(true);
+      await dispatch(fetchOrders());
+      setLoading(false);
+    };
+
+    fetchData();
   }, [dispatch]);
 
   const formatDate = (dateString) => {
@@ -62,26 +70,34 @@ const AllOrders = ({ filter }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {currentOrders.map((order) => (
-            <TableRow key={order._id}>
-              <TableCell>
-                <UserWrapper>
-                  <Avatar src={order.photo} alt={order.name} />
-                  {order.name}
-                </UserWrapper>
-              </TableCell>
-              <TableCell>{order.address}</TableCell>
-              <TableCell>{order.products}</TableCell>
-              <TableCell>{formatDate(order.order_date)}</TableCell>
-              <TableCell>{order.price}</TableCell>
-              <TableCell type={order.status}>
-                <span>{order.status}</span>
+          {loading ? (
+            <TableRow>
+              <TableCell colSpan="6" style={{ textAlign: "center" }}>
+                <TableLoader />
               </TableCell>
             </TableRow>
-          ))}
+          ) : (
+            currentOrders.map((order) => (
+              <TableRow key={order._id}>
+                <TableCell>
+                  <UserWrapper>
+                    <Avatar src={order.photo} alt={order.name} />
+                    {order.name}
+                  </UserWrapper>
+                </TableCell>
+                <TableCell>{order.address}</TableCell>
+                <TableCell>{order.products}</TableCell>
+                <TableCell>{formatDate(order.order_date)}</TableCell>
+                <TableCell>{order.price}</TableCell>
+                <TableCell type={order.status}>
+                  <span>{order.status}</span>
+                </TableCell>
+              </TableRow>
+            ))
+          )}
         </TableBody>
       </Table>
-      {filteredOrders.length > ordersPerPage && (
+      {filteredOrders.length > ordersPerPage && !loading && (
         <Pagination
           totalItems={filteredOrders.length}
           itemsPerPage={ordersPerPage}

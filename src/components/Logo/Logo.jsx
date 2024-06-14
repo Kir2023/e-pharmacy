@@ -6,7 +6,7 @@ const Logo = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/dashboard");
+    navigate("/");
   };
 
   return (

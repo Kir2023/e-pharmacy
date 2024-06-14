@@ -15,15 +15,28 @@ import {
 } from "./CustomersData.styled";
 import Pagination from "../Pagination/Pagination";
 import { fetchCustomers } from "../../redux/customers/customersOperations";
+import TableLoader from "../TableLoader/TableLoader";
+import { Notify } from "notiflix";
 
 const CustomersData = ({ filter }) => {
   const dispatch = useDispatch();
   const customers = useSelector((state) => state.customers.items);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const customersPerPage = 5;
 
   useEffect(() => {
-    dispatch(fetchCustomers());
+    const fetchData = async () => {
+      try {
+        await dispatch(fetchCustomers());
+        setLoading(false);
+      } catch (error) {
+        Notify.failure("Error fetching customers");
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, [dispatch]);
 
   const formatDate = (dateString) => {
@@ -55,26 +68,34 @@ const CustomersData = ({ filter }) => {
           <TableRow>
             <TableHeader>User info</TableHeader>
             <TableHeader>Email</TableHeader>
-            <TableHeader>Adress</TableHeader>
+            <TableHeader>Address</TableHeader>
             <TableHeader>Phone</TableHeader>
             <TableHeader>Register date</TableHeader>
           </TableRow>
         </TableHead>
         <TableBody>
-          {currentCustomers.map((customer) => (
-            <TableRow key={customer._id}>
-              <TableCell>
-                <UserWrapper>
-                  <Avatar src={customer.photo} alt={customer.name} />
-                  {customer.name}
-                </UserWrapper>
+          {loading ? (
+            <TableRow>
+              <TableCell colSpan="5" style={{ textAlign: "center" }}>
+                <TableLoader />
               </TableCell>
-              <TableCell>{customer.email}</TableCell>
-              <TableCell>{customer.address}</TableCell>
-              <TableCell>{customer.phone}</TableCell>
-              <TableCell>{formatDate(customer.register_date)}</TableCell>
             </TableRow>
-          ))}
+          ) : (
+            currentCustomers.map((customer) => (
+              <TableRow key={customer._id}>
+                <TableCell>
+                  <UserWrapper>
+                    <Avatar src={customer.photo} alt={customer.name} />
+                    {customer.name}
+                  </UserWrapper>
+                </TableCell>
+                <TableCell>{customer.email}</TableCell>
+                <TableCell>{customer.address}</TableCell>
+                <TableCell>{customer.phone}</TableCell>
+                <TableCell>{formatDate(customer.register_date)}</TableCell>
+              </TableRow>
+            ))
+          )}
         </TableBody>
       </Table>
       {filteredCustomers.length > customersPerPage && (

@@ -137,7 +137,7 @@ const AddSupplierModal = ({ onClose, onSave }) => {
             type="number"
             name="amount"
             min="0"
-            step="1"
+            step="0.01"
             value={newSupplier.amount}
             onChange={handleChange}
             placeholder="Amount"

@@ -138,7 +138,7 @@ const EditSupplierModal = ({ onClose, supplier, onSave }) => {
             type="number"
             name="amount"
             min="0"
-            step="1"
+            step="0.01"
             value={editedSupplier.amount}
             onChange={handleChange}
             required

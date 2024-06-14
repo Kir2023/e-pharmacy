@@ -6,6 +6,7 @@ import PageTitle from "../../components/Title/Title";
 import { Wrapper } from "./Header.styled";
 import { logOutThunk } from "../../redux/auth/authOperations";
 import { useNavigate } from "react-router-dom";
+import { Notify } from "notiflix";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const Header = () => {
       await dispatch(logOutThunk()).unwrap();
       navigate("/login");
     } catch (error) {
-      console.error("Logout error:", error);
+      Notify.failure("Logout error");
     }
   };
 
