@@ -1,5 +1,20 @@
 import styled from "styled-components";
 
+export const LoginContainer = styled.div`
+  max-width: 335px;
+  padding-left: 24px;
+
+  @media screen and (min-width: 768px) {
+    padding-left: 32px;
+    max-width: 614px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding-left: 100px;
+    max-width: 1087px;
+  }
+`;
+
 export const Logo = styled.img`
   position: absolute;
   width: 172px;

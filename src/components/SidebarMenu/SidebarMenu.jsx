@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   SidebarContainer,
   MenuItem,
@@ -17,6 +17,7 @@ import { Notify } from "notiflix";
 const SidebarMenu = () => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -34,6 +35,10 @@ const SidebarMenu = () => {
       Notify.failure("Logout error");
     }
   };
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
 
   return (
     <>

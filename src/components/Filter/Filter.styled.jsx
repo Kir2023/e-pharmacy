@@ -13,7 +13,7 @@ export const Input = styled.input`
   width: 215px;
   height: 44px;
   padding: 13px 18px;
-  background-color: #ffffff;
+  background-color: var(--background-color);
   border: 1px solid rgba(29, 30, 33, 0.1);
   box-shadow: 0px -1px 5px rgba(71, 71, 71, 0.05);
   border-radius: 60px;
@@ -37,7 +37,7 @@ export const Button = styled.button`
   gap: 8px;
   padding: 13px 30px;
   background-color: var(--main-color);
-  color: #ffffff;
+  color: var(--background-color);
   border: none;
   border-radius: 60px;
   cursor: pointer;

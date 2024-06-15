@@ -31,7 +31,7 @@ export const SidebarContainer = styled.nav`
     display: block;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     transform: translateX(0);
     margin-top: 80px;
 
@@ -104,7 +104,7 @@ export const ToggleButton = styled.button`
     stroke-width: 2;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1024px) {
     display: none;
   }
 

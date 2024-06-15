@@ -46,6 +46,10 @@ const AllProducts = ({ filter }) => {
     fetchData();
   }, [dispatch]);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filter]);
+
   const handleAddProduct = async (newProduct) => {
     try {
       const resultAction = await dispatch(addProduct(newProduct));

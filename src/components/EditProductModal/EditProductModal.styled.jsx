@@ -80,7 +80,7 @@ export const Input = styled.input`
   font-size: 12px;
   line-height: 18px;
   color: rgba(29, 30, 33, 0.8);
-  background: #ffffff;
+  background: var(--background-color);
   border: 1px solid rgba(29, 30, 33, 0.1);
   border-radius: 60px;
 
@@ -111,7 +111,7 @@ export const SelectWrapper = styled.div`
     font-size: 12px;
     line-height: 18px;
     color: rgba(29, 30, 33, 0.8);
-    background: #ffffff;
+    background: var(--background-color);
     border: 1px solid rgba(29, 30, 33, 0.1);
     border-radius: 60px;
     cursor: pointer;

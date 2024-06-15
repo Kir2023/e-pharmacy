@@ -45,6 +45,10 @@ const AllSuppliers = ({ filter }) => {
     fetchData();
   }, [dispatch]);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filter]);
+
   const handleAddSupplier = async (newSupplier) => {
     try {
       await dispatch(addSupplier(newSupplier)).unwrap();

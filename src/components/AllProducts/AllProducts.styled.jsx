@@ -14,7 +14,7 @@ export const TableContainer = styled.div`
 `;
 
 export const Table = styled.table`
-  background-color: #ffffff;
+  background-color: var(--background-color);
   width: 671px;
   border-collapse: collapse;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -166,7 +166,7 @@ export const AddProductButton = styled.button`
 
   @media screen and (min-width: 1440px) {
     position: absolute;
-    left: 1223px;
+    left: 1523px;
     top: 117px;
     margin-bottom: 0;
   }

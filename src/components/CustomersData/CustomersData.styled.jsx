@@ -14,7 +14,7 @@ export const TableContainer = styled.div`
 `;
 
 export const Table = styled.table`
-  background-color: #ffffff;
+  background-color: var(--background-color);
   width: 671px;
   border-collapse: collapse;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

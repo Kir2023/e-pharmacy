@@ -39,6 +39,10 @@ const CustomersData = ({ filter }) => {
     fetchData();
   }, [dispatch]);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filter]);
+
   const formatDate = (dateString) => {
     const options = { month: "long", day: "numeric", year: "numeric" };
     const date = new Date(dateString);
