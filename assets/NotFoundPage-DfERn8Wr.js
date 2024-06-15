@@ -1,4 +1,4 @@
-import{p as o,j as t,C as n}from"./index-BhDmYLhS.js";const s="/e-pharmacy-frontend/assets/404-CkTyPJHB.png",a=o.section``,e=o.img`
+import{p as o,j as t,C as n}from"./index-DDfpZsUr.js";const s="/e-pharmacy-frontend/assets/404-CkTyPJHB.png",a=o.section``,e=o.img`
   position: absolute;
   max-width: 100%;
   height: auto;

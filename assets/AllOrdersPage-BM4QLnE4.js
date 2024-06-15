@@ -1,4 +1,4 @@
-import{p as t,a as C,b as v,r as c,j as e,c as O,C as y}from"./index-BhDmYLhS.js";import{P as S,u as T,U as D}from"./useFilter-DHxwx7ml.js";import{T as z}from"./TableLoader-B9ofIuCv.js";const A=t.div`
+import{p as t,a as C,b as v,r as o,j as e,c as O,C as y}from"./index-DDfpZsUr.js";import{P as S,u as T,U as D}from"./useFilter-BxCNmLfH.js";import{T as z}from"./TableLoader-DlmeU0NO.js";const A=t.div`
   max-width: 335px;
   margin-top: 20px;
 
@@ -10,7 +10,7 @@ import{p as t,a as C,b as v,r as c,j as e,c as O,C as y}from"./index-BhDmYLhS.js
     max-width: 1280px;
   }
 `,L=t.table`
-  background-color: #ffffff;
+  background-color: var(--background-color);
   width: 671px;
   border-collapse: collapse;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -36,7 +36,7 @@ import{p as t,a as C,b as v,r as c,j as e,c as O,C as y}from"./index-BhDmYLhS.js
 `,k=t.thead`
   color: rgba(29, 30, 33, 0.4);
   font-weight: 500;
-`,F=t.tbody``,l=t.tr``,a=t.th`
+`,E=t.tbody``,l=t.tr``,a=t.th`
   padding: 12px;
   text-align: left;
   font-size: 14px;
@@ -73,7 +73,7 @@ import{p as t,a as C,b as v,r as c,j as e,c as O,C as y}from"./index-BhDmYLhS.js
   @media screen and (min-width: 768px) {
     font-size: 14px;
   }
-`,E=t.div`
+`,F=t.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -90,4 +90,4 @@ import{p as t,a as C,b as v,r as c,j as e,c as O,C as y}from"./index-BhDmYLhS.js
     width: 36px;
     height: 36px;
   }
-`,I=({filter:n})=>{const d=C(),x=v(r=>r.orders.items),[p,u]=c.useState(1),[h,m]=c.useState(!0),i=5;c.useEffect(()=>{(async()=>{m(!0),await d(O()),m(!1)})()},[d]);const f=r=>{const P={month:"long",day:"numeric",year:"numeric"};return new Date(r).toLocaleDateString("en-US",P)},o=n?x.filter(r=>r.name.toLowerCase().includes(n.toLowerCase())):x,g=p*i,b=g-i,j=o.slice(b,g),w=r=>u(r);return e.jsxs(A,{children:[e.jsxs(L,{children:[e.jsx(U,{children:"All orders"}),e.jsx(k,{children:e.jsxs(l,{children:[e.jsx(a,{children:"User Info"}),e.jsx(a,{children:"Address"}),e.jsx(a,{children:"Products"}),e.jsx(a,{children:"Order date"}),e.jsx(a,{children:"Price"}),e.jsx(a,{children:"Status"})]})}),e.jsx(F,{children:h?e.jsx(l,{children:e.jsx(s,{colSpan:"6",style:{textAlign:"center"},children:e.jsx(z,{})})}):j.map(r=>e.jsxs(l,{children:[e.jsx(s,{children:e.jsxs(E,{children:[e.jsx(H,{src:r.photo,alt:r.name}),r.name]})}),e.jsx(s,{children:r.address}),e.jsx(s,{children:r.products}),e.jsx(s,{children:f(r.order_date)}),e.jsx(s,{children:r.price}),e.jsx(s,{type:r.status,children:e.jsx("span",{children:r.status})})]},r._id))})]}),o.length>i&&!h&&e.jsx(S,{totalItems:o.length,itemsPerPage:i,currentPage:p,paginate:w})]})},B=()=>{const{filter:n,handleFilter:d}=T();return e.jsxs(y,{children:[e.jsx(D,{handleFilter:d,placeholder:"User Name"}),e.jsx(I,{filter:n})]})};export{B as default};
+`,I=({filter:n})=>{const d=C(),x=v(r=>r.orders.items),[p,h]=o.useState(1),[g,m]=o.useState(!0),i=5;o.useEffect(()=>{(async()=>{m(!0),await d(O()),m(!1)})()},[d]),o.useEffect(()=>{h(1)},[n]);const b=r=>{const P={month:"long",day:"numeric",year:"numeric"};return new Date(r).toLocaleDateString("en-US",P)},c=n?x.filter(r=>r.name.toLowerCase().includes(n.toLowerCase())):x,u=p*i,f=u-i,j=c.slice(f,u),w=r=>h(r);return e.jsxs(A,{children:[e.jsxs(L,{children:[e.jsx(U,{children:"All orders"}),e.jsx(k,{children:e.jsxs(l,{children:[e.jsx(a,{children:"User Info"}),e.jsx(a,{children:"Address"}),e.jsx(a,{children:"Products"}),e.jsx(a,{children:"Order date"}),e.jsx(a,{children:"Price"}),e.jsx(a,{children:"Status"})]})}),e.jsx(E,{children:g?e.jsx(l,{children:e.jsx(s,{colSpan:"6",style:{textAlign:"center"},children:e.jsx(z,{})})}):j.map(r=>e.jsxs(l,{children:[e.jsx(s,{children:e.jsxs(F,{children:[e.jsx(H,{src:r.photo,alt:r.name}),r.name]})}),e.jsx(s,{children:r.address}),e.jsx(s,{children:r.products}),e.jsx(s,{children:b(r.order_date)}),e.jsx(s,{children:r.price}),e.jsx(s,{type:r.status,children:e.jsx("span",{children:r.status})})]},r._id))})]}),c.length>i&&!g&&e.jsx(S,{totalItems:c.length,itemsPerPage:i,currentPage:p,paginate:w})]})},B=()=>{const{filter:n,handleFilter:d}=T();return e.jsxs(y,{children:[e.jsx(D,{handleFilter:d,placeholder:"User Name"}),e.jsx(I,{filter:n})]})};export{B as default};

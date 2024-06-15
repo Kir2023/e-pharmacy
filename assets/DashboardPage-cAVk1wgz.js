@@ -1,4 +1,4 @@
-import{p as t,a as b,b as w,r as a,j as e,f as u,n as v,s as c,C as z}from"./index-BhDmYLhS.js";import{T as y}from"./TableLoader-B9ofIuCv.js";const E=t.div`
+import{p as t,a as f,b as w,r as a,j as e,f as u,n as v,s as c,C as z}from"./index-DDfpZsUr.js";import{T as y}from"./TableLoader-DlmeU0NO.js";const E=t.div`
   max-width: 335px;
   margin-top: 20px;
 
@@ -10,7 +10,7 @@ import{p as t,a as b,b as w,r as a,j as e,f as u,n as v,s as c,C as z}from"./ind
     max-width: 630px;
   }
 `,C=t.table`
-  background-color: #ffffff;
+  background-color: var(--background-color);
   width: 100%;
   border-collapse: collapse;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -50,9 +50,9 @@ import{p as t,a as b,b as w,r as a,j as e,f as u,n as v,s as c,C as z}from"./ind
     display: inline-block;
     padding: 4px 13.5px;
     border-radius: 40px;
-    background-color: ${({type:n})=>{switch(n){case"Expense":return"rgba(232, 80, 80, 0.1)";case"Error":return"rgba(29, 30, 33, 0.1)";case"Income":return"rgba(89, 177, 122, 0.1)";default:return"rgba(0, 0, 0, 0.05)"}}};
+    background-color: ${({type:r})=>{switch(r){case"Expense":return"rgba(232, 80, 80, 0.1)";case"Error":return"rgba(29, 30, 33, 0.1)";case"Income":return"rgba(89, 177, 122, 0.1)";default:return"rgba(0, 0, 0, 0.05)"}}};
   
-  color: ${({type:n})=>{switch(n){case"Expense":return"var(--cancel-color)";case"Error":return"var(--main-text-color)";case"Income":return"var(--main-color)";default:return"inherit"}}};
+  color: ${({type:r})=>{switch(r){case"Expense":return"var(--cancel-color)";case"Error":return"var(--main-text-color)";case"Income":return"var(--main-color)";default:return"inherit"}}};
 
   @media screen and (min-width: 768px) {
     font-size: 14px;
@@ -69,11 +69,11 @@ import{p as t,a as b,b as w,r as a,j as e,f as u,n as v,s as c,C as z}from"./ind
   text-align: left;
   border-bottom: 1px solid #ddd;
   font-size: 14px;
-  color: ${({type:n})=>{switch(n){case"Expense":return"var(--cancel-color)";case"Error":return"var(--main-text-color)";case"Income":return"var(--main-color)";default:return"inherit"}}};
+  color: ${({type:r})=>{switch(r){case"Expense":return"var(--cancel-color)";case"Error":return"var(--main-text-color)";case"Income":return"var(--main-color)";default:return"inherit"}}};
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
-`,I=()=>{const n=b(),r=w(s=>s.dashboard.transactions),[d,i]=a.useState(!0);return a.useEffect(()=>{(async()=>{try{await n(u()),i(!1)}catch{v.Notify.failure("Error fetching dashboard data"),i(!1)}})()},[n]),e.jsx(E,{children:e.jsxs(C,{children:[e.jsx($,{children:"Income/Expenses"}),e.jsx(S,{children:e.jsxs(l,{children:[e.jsx(x,{children:"Today"}),e.jsx(x,{}),e.jsx(x,{})]})}),e.jsx(k,{children:d?e.jsx(l,{children:e.jsx(j,{colSpan:"3",style:{textAlign:"center"},children:e.jsx(y,{})})}):r.map(s=>e.jsxs(l,{children:[e.jsx(j,{type:s.type,children:e.jsx("span",{children:s.type})}),e.jsx(A,{children:s.name}),e.jsx(D,{type:s.type,children:s.amount})]},s._id))})]})})},B=t.div`
+`,I=()=>{const r=f(),i=w(n=>n.dashboard.transactions),[d,s]=a.useState(!0);return a.useEffect(()=>{(async()=>{try{await r(u()),s(!1)}catch{v.Notify.failure("Error fetching dashboard data"),s(!1)}})()},[r]),e.jsx(E,{children:e.jsxs(C,{children:[e.jsx($,{children:"Income/Expenses"}),e.jsx(S,{children:e.jsxs(l,{children:[e.jsx(x,{children:"Today"}),e.jsx(x,{}),e.jsx(x,{})]})}),e.jsx(k,{children:d?e.jsx(l,{children:e.jsx(j,{colSpan:"3",style:{textAlign:"center"},children:e.jsx(y,{})})}):i.map(n=>e.jsxs(l,{children:[e.jsx(j,{type:n.type,children:e.jsx("span",{children:n.type})}),e.jsx(A,{children:n.name}),e.jsx(D,{type:n.type,children:n.amount})]},n._id))})]})})},B=t.div`
   max-width: 335px;
   margin-top: 20px;
 
@@ -85,7 +85,7 @@ import{p as t,a as b,b as w,r as a,j as e,f as u,n as v,s as c,C as z}from"./ind
     max-width: 630px;
   }
 `,R=t.table`
-  background-color: #ffffff;
+  background-color: var(--background-color);
   width: 100%;
   border-collapse: collapse;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -137,13 +137,13 @@ import{p as t,a as b,b as w,r as a,j as e,f as u,n as v,s as c,C as z}from"./ind
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
-`,N=()=>{const n=b(),r=w(s=>s.dashboard.recentCustomers),[d,i]=a.useState(!0);return a.useEffect(()=>{(async()=>{try{await n(u()),i(!1)}catch{v.Notify.failure("Error fetching recent customers"),i(!1)}})()},[n]),e.jsx(B,{children:e.jsxs(R,{children:[e.jsx(_,{children:"Recent Customers"}),e.jsx(H,{children:e.jsxs(p,{children:[e.jsx(h,{children:"Name"}),e.jsx(h,{children:"Email"}),e.jsx(h,{children:"Spent"})]})}),e.jsx(L,{children:d?e.jsx(p,{children:e.jsx(o,{colSpan:"3",style:{textAlign:"center"},children:e.jsx(y,{})})}):r.map(s=>e.jsxs(p,{children:[e.jsx(o,{children:s.name}),e.jsx(o,{children:s.email}),e.jsx(o,{children:s.spent})]},s._id))})]})})},P=t.div`
+`,N=()=>{const r=f(),i=w(n=>n.dashboard.recentCustomers),[d,s]=a.useState(!0);return a.useEffect(()=>{(async()=>{try{await r(u()),s(!1)}catch{v.Notify.failure("Error fetching recent customers"),s(!1)}})()},[r]),e.jsx(B,{children:e.jsxs(R,{children:[e.jsx(_,{children:"Recent Customers"}),e.jsx(H,{children:e.jsxs(p,{children:[e.jsx(h,{children:"Name"}),e.jsx(h,{children:"Email"}),e.jsx(h,{children:"Spent"})]})}),e.jsx(L,{children:d?e.jsx(p,{children:e.jsx(o,{colSpan:"3",style:{textAlign:"center"},children:e.jsx(y,{})})}):i.map(n=>e.jsxs(p,{children:[e.jsx(o,{children:n.name}),e.jsx(o,{children:n.email}),e.jsx(o,{children:n.spent})]},n._id))})]})})},P=t.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 20px;
-`,f=t.div`
+`,m=t.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -164,7 +164,7 @@ import{p as t,a as b,b as w,r as a,j as e,f as u,n as v,s as c,C as z}from"./ind
   @media screen and (min-width: 1440px) {
     width: 240px;
   }
-`,m=t.span`
+`,g=t.span`
   font-size: 12px;
   color: rgba(29, 30, 33, 0.4);
   display: flex;
@@ -185,7 +185,7 @@ import{p as t,a as b,b as w,r as a,j as e,f as u,n as v,s as c,C as z}from"./ind
       height: 20px;
     }
   }
-`,g=t.span`
+`,b=t.span`
   font-size: 16px;
   font-weight: bold;
   color: var(--main-text-color);
@@ -193,7 +193,7 @@ import{p as t,a as b,b as w,r as a,j as e,f as u,n as v,s as c,C as z}from"./ind
   @media screen and (min-width: 768px) {
     font-size: 24px;
   }
-`,W=()=>{const n=b(),{totalProducts:r,totalSuppliers:d,totalCustomers:i}=w(s=>s.dashboard);return a.useEffect(()=>{n(u())},[n]),e.jsxs(P,{children:[e.jsxs(f,{children:[e.jsxs(m,{children:[e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:`${c}#icon-coins`})}),"All products"]}),e.jsx(g,{children:r})]}),e.jsxs(f,{children:[e.jsxs(m,{children:[e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:`${c}#icon-users`})}),"All suppliers"]}),e.jsx(g,{children:d})]}),e.jsxs(f,{children:[e.jsxs(m,{children:[e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:`${c}#icon-users`})}),"All customers"]}),e.jsx(g,{children:i})]})]})},V=t.div`
+`,W=()=>{const r=f(),{totalProducts:i,totalSuppliers:d,totalCustomers:s}=w(n=>n.dashboard);return a.useEffect(()=>{r(u())},[r]),e.jsxs(P,{children:[e.jsxs(m,{children:[e.jsxs(g,{children:[e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:`${c}#icon-coins`})}),"All products"]}),e.jsx(b,{children:i})]}),e.jsxs(m,{children:[e.jsxs(g,{children:[e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:`${c}#icon-users`})}),"All suppliers"]}),e.jsx(b,{children:d})]}),e.jsxs(m,{children:[e.jsxs(g,{children:[e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:`${c}#icon-users`})}),"All customers"]}),e.jsx(b,{children:s})]})]})},V=t.div`
   @media screen and (min-width: 1440px) {
     display: flex;
     gap: 20px;

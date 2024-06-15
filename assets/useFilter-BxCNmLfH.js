@@ -1,4 +1,4 @@
-import{p as o,j as r,r as d}from"./index-BhDmYLhS.js";const x=o.div`
+import{p as o,j as e,r as p}from"./index-DDfpZsUr.js";const c=o.div`
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -11,7 +11,7 @@ import{p as o,j as r,r as d}from"./index-BhDmYLhS.js";const x=o.div`
   @media screen and (min-width: 1440px) {
     width: 1280px;
   }
-`,c=o.button`
+`,x=o.button`
   width: 9.5px;
   height: 9.5px;
   background-color: #e7f1ed;
@@ -27,7 +27,7 @@ import{p as o,j as r,r as d}from"./index-BhDmYLhS.js";const x=o.div`
   &:hover {
     background-color: var(--active-color);
   }
-`,f=({totalItems:t,itemsPerPage:i,currentPage:n,paginate:a})=>{const s=[];for(let e=1;e<=Math.ceil(t/i);e++)s.push(e);return r.jsx(x,{children:s.map(e=>r.jsx(c,{className:n===e?"active":"",onClick:()=>a(e)},e))})},l=o.div`
+`,m=({totalItems:t,itemsPerPage:i,currentPage:n,paginate:a})=>{const s=[];for(let r=1;r<=Math.ceil(t/i);r++)s.push(r);return e.jsx(c,{children:s.map(r=>e.jsx(x,{className:n===r?"active":"",onClick:()=>a(r)},r))})},l=o.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -38,7 +38,7 @@ import{p as o,j as r,r as d}from"./index-BhDmYLhS.js";const x=o.div`
   width: 215px;
   height: 44px;
   padding: 13px 18px;
-  background-color: #ffffff;
+  background-color: var(--background-color);
   border: 1px solid rgba(29, 30, 33, 0.1);
   box-shadow: 0px -1px 5px rgba(71, 71, 71, 0.05);
   border-radius: 60px;
@@ -60,7 +60,7 @@ import{p as o,j as r,r as d}from"./index-BhDmYLhS.js";const x=o.div`
   gap: 8px;
   padding: 13px 30px;
   background-color: var(--main-color);
-  color: #ffffff;
+  color: var(--background-color);
   border: none;
   border-radius: 60px;
   cursor: pointer;
@@ -87,4 +87,4 @@ import{p as o,j as r,r as d}from"./index-BhDmYLhS.js";const x=o.div`
   border-radius: 4px;
   margin-bottom: 4px;
   font-size: 14px;
-`;const m=({handleFilter:t,placeholder:i})=>{const[n,a]=d.useState(""),s=p=>{a(p.target.value)},e=p=>{p.key==="Enter"&&t(n)};return r.jsxs(l,{children:[r.jsx(g,{type:"text",value:n,onChange:s,onKeyDown:e,placeholder:i}),r.jsxs(h,{onClick:()=>t(n),children:[r.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:r.jsx("use",{href:"./sprite.svg#icon-filter"})}),"Filter"]})]})},b=()=>{const[t,i]=d.useState("");return{filter:t,handleFilter:a=>{i(a)}}};export{f as P,m as U,b as u};
+`;const b=({handleFilter:t,placeholder:i})=>{const[n,a]=p.useState(""),s=d=>{a(d.target.value)},r=d=>{d.key==="Enter"&&t(n)};return e.jsxs(l,{children:[e.jsx(g,{type:"text",value:n,onChange:s,onKeyDown:r,placeholder:i}),e.jsxs(h,{onClick:()=>t(n),children:[e.jsx("svg",{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 32 32",children:e.jsx("use",{href:"./sprite.svg#icon-filter"})}),"Filter"]})]})},v=()=>{const[t,i]=p.useState("");return{filter:t,handleFilter:a=>{i(a)}}};export{m as P,b as U,v as u};
